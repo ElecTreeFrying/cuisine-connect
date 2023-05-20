@@ -1,1 +1,22 @@
-<p>homepage works!</p>
+<br>
+
+<h2 class="homepage--section-title">Cuisine Categories</h2>
+
+<p class="homepage--section-description">Cuisine categories refer to classifications or groupings of different types of culinary traditions, styles, and flavors that are associated with specific regions, cultures, or cooking techniques. These categories serve as a way to classify and organize the vast and diverse world of cuisines.</p>
+
+<br>
+
+<div class="cuisines">
+
+  <mat-card *ngFor="let foodCategory of foodCategories;">
+    <mat-card-header>
+      <mat-card-title>{{ foodCategory.title }}</mat-card-title>
+      <mat-card-subtitle>{{ foodCategory.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="foodCategory.photo" [alt]="foodCategory.title">
+    <mat-card-content>
+      <p>{{ foodCategory.details }}</p>
+    </mat-card-content>
+  </mat-card>
+  
+</div>

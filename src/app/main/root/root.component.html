@@ -1,10 +1,15 @@
 <ng-container *ngIf="service.authenticated$ | async">
-  <mat-toolbar class="toolbar mat-elevation-z1">
-    <mat-toolbar class="toolbar-content">
+  <mat-toolbar class="toolbar mat-elevation-z1" color="primary">
+    <mat-toolbar class="toolbar--content" color="primary">
     
-      <span class="toolbar--app-name">Cuisine Connect</span>
+      <span class="toolbar--app-name" routerLink="/">Cuisine Connect</span>
   
       <ng-container *ngIf="(service.authState$ | async)?.photoURL">
+
+        <button mat-button routerLink="/">Cuisine categories</button>
+        <button mat-button routerLink="/search-dish">Search a dish</button>
+        <button mat-button routerLink="/add-recipe">Add a recipe</button>
+  
         <div
           class="toolbar--image-button"
           [matMenuTriggerFor]="userMenu"
@@ -25,8 +30,13 @@
   </mat-toolbar>
 </ng-container>
 
-<div class="root">
+<div class="root" [ngClass]="{ authenticated: service.authenticated$ | async }">
   <div class="root--content">
-    <router-outlet></router-outlet>
+    <div class="root--content-outlet">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="root--content-footer" *ngIf="service.authenticated$ | async">
+      <p>©2023 <span routerLink="/">Cousine Connect.</span> All rights reserved.</p>
+    </div>
   </div>
 </div>

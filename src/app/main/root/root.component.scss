@@ -6,13 +6,15 @@
   display: flex;
   justify-content: center;
 
-  .toolbar-content {
-    flex: 0 1 1200px;
+  .toolbar--content {
+    flex: 0 1 calc(1200px + 12px*2);
     padding: 0;
+    gap: 8px;
   }
 
   .toolbar--app-name {
     margin-right: auto;
+    cursor: pointer;
   }
 
   .toolbar--action {
@@ -33,6 +35,7 @@
     cursor: pointer;
     user-select: none;
     border-radius: 6px;
+    margin-left: 12px;
     img {
       border-radius: 25px;
       cursor: pointer;
@@ -45,12 +48,26 @@
   }
 }
 
-.root {
+.root.authenticated {
   display: flex;
   justify-content: center;
   padding: 64px 16px 0;
 
   .root--content {
-    flex: 0 1 1200px;
+    padding-top: 32px;
+    flex: 0 1 calc(1200px + 12px*2);
+  }
+  .root--content-outlet {
+    min-height: calc(100dvh - 64px - 32px - 56px);
+  }
+  .root--content-footer {
+    padding: 12px;
+    p {
+      font-size: 16px;
+    }
+    span {
+      color: #3f51b5;
+      cursor: pointer;
+    }
   }
 }
