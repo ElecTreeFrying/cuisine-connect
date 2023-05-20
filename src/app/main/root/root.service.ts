@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth, signOut } from '@angular/fire/auth';
+import { Auth, authState, signOut } from '@angular/fire/auth';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -12,11 +12,13 @@ export class RootService {
 
   @Select(AuthState.authenticated) authenticated$!: Observable<boolean>;
 
+  authState$ = authState(this.auth);
+
   constructor(
     private router: Router,
     private auth: Auth,
     private store: Store,
-    authState: AuthStateService
+    _: AuthStateService
   ) { }
 
   logout(): void {

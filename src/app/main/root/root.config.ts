@@ -1,7 +1,8 @@
 import { AsyncPipe, NgIf } from "@angular/common";
 import { RouterOutlet } from "@angular/router";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatButtonModule } from "@angular/material/button";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatIconModule } from "@angular/material/icon";
 
 import { RootService } from './root.service';
 
@@ -10,7 +11,8 @@ export const imports = [
   AsyncPipe,
   RouterOutlet,
   MatToolbarModule,
-  MatButtonModule
+  MatMenuModule,
+  MatIconModule
 ];
 
 export const viewProviders = [

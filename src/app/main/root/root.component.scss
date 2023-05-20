@@ -1,13 +1,18 @@
-.mat-toolbar {
+.toolbar {
+  
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
 
-  gap: 8px;
+  .toolbar-content {
+    flex: 0 1 1200px;
+    padding: 0;
+  }
 
   .toolbar--app-name {
     margin-right: auto;
-  }
-
-  .toolbar--divider {
-    margin: 0 8px;
   }
 
   .toolbar--action {
@@ -18,4 +23,34 @@
     }
   }
 
+  .toolbar--image-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    flex-wrap: wrap;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 6px;
+    img {
+      border-radius: 25px;
+      cursor: pointer;
+      user-select: none;
+      margin: 1.5px 0;
+    }
+    .mat-icon {
+      margin-left: 4px;
+    }  
+  }
+}
+
+.root {
+  display: flex;
+  justify-content: center;
+  padding: 64px 16px 0;
+
+  .root--content {
+    flex: 0 1 1200px;
+  }
 }

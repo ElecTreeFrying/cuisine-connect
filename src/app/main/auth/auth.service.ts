@@ -58,7 +58,7 @@ export class AuthService {
       await FirebaseAuth.createUserWithEmailAndPassword(this.auth, email, password);
       await FirebaseAuth.updateProfile(
         FirebaseAuth.getAuth().currentUser!,
-        { displayName: fullname }
+        { displayName: fullname, photoURL: `https://dummyimage.com/50x50/42aaff/ffffff.png?text=${fullname[0]}` }
       )
       this.authenticate();
     } catch (error) {

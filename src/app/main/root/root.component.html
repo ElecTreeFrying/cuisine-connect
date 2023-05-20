@@ -1,12 +1,32 @@
 <ng-container *ngIf="service.authenticated$ | async">
-  <mat-toolbar>
+  <mat-toolbar class="toolbar mat-elevation-z1">
+    <mat-toolbar class="toolbar-content">
+    
+      <span class="toolbar--app-name">Cuisine Connect</span>
   
-    <span class="toolbar--app-name">Cuisine Connect</span>
-
-    <button mat-button>Manage profile</button>
-    <button mat-button (click)="service.logout()">Logout</button>
+      <ng-container *ngIf="(service.authState$ | async)?.photoURL">
+        <div
+          class="toolbar--image-button"
+          [matMenuTriggerFor]="userMenu"
+          #userMenuTrigger="matMenuTrigger">
+          <img [src]="(service.authState$ | async)?.photoURL" alt="user-image" height="45" width="45">
+          <mat-icon>arrow_drop_{{ userMenuTrigger.menuOpen ? 'up' : 'down' }}</mat-icon>
+        </div>
+      </ng-container>
   
+      <mat-menu 
+        xPosition="before"
+        #userMenu="matMenu">
+        <button mat-menu-item routerLink="/manage-profile">Manage profile</button>
+        <button mat-menu-item (click)="service.logout()">Logout</button>
+      </mat-menu>
+  
+    </mat-toolbar>
   </mat-toolbar>
 </ng-container>
 
-<router-outlet></router-outlet>
+<div class="root">
+  <div class="root--content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
