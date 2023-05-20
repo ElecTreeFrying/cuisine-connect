@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { imports, viewProviders } from './root.config';
+import { AuthStateService } from '../common/auth-state.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,9 @@ import { imports, viewProviders } from './root.config';
   standalone: true, imports, viewProviders
 })
 export class RootComponent {
+
+  constructor(
+    authState: AuthStateService
+  ) { }
+  
 }

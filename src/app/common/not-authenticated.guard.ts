@@ -4,11 +4,11 @@ import { Store } from '@ngxs/store';
 
 import { AuthState } from '../store';
 
-export function authenticatedGuard(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+export function notAuthenticatedGuard(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
   const authenticated = inject(Store).selectSnapshot(AuthState.authenticated);
 
-  !authenticated && inject(Router).navigateByUrl('/auth');
+  authenticated && inject(Router).navigateByUrl('/');
 
-  return authenticated;
+  return !authenticated;
 }

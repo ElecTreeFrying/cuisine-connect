@@ -7,6 +7,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     Provider.useRouteProviders,
+    Provider.useTokenProviders,
     Provider.useMaterialProviders,
     Provider.useFirebaseProviders,
     Provider.useNgxsProviders

@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-content class="mat-elevation-z2">
+
+    <p class="auth--app-name">Cuisine Connect</p>
+
+    <ng-container *ngIf="authState;else loginForm">
+
+      <p class="auth--greetings">Create Account</p>
+
+      <form (ngSubmit)="service.register()" [formGroup]="service.registerForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Full name</mat-label>
+          <input matInput type="text" placeholder="Enter your full name" formControlName="fullname">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" autocomplete="username" placeholder="Enter your email address" formControlName="email">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" autocomplete="current-password" placeholder="Enter your password" formControlName="password">
+        </mat-form-field>
+    
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </form>
+  
+      <p class="auth--switch" (click)="updateState(false)">
+        Have an account already? <span class="auth--switch-action">Log in</span>
+      </p>
+
+    </ng-container>
+    <ng-template #loginForm>
+
+      <p class="auth--greetings">Welcome back!</p>
+
+      <form (ngSubmit)="service.login()" [formGroup]="service.loginForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" autocomplete="username" placeholder="Enter your email address" formControlName="email">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" autocomplete="current-password" placeholder="Enter your password" formControlName="password">
+        </mat-form-field>
+    
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </form>
+  
+      <p class="auth--switch" (click)="updateState(true)">
+        New to Cuisine Connect? <span class="auth--switch-action">Sign up</span>
+      </p>
+
+    </ng-template>
+
+  </mat-card-content>
+</mat-card>

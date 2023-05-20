@@ -1,0 +1,19 @@
+.mat-toolbar {
+
+  [class^="toolbar--action-"] {
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .toolbar--action-login {
+    margin-left: auto;
+  }
+
+  .toolbar--divider {
+    margin: 0 8px;
+  }
+
+}

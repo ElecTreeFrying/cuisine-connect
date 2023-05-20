@@ -4,17 +4,18 @@ import { NgxsRouterPluginModule, RouterDataResolved, RouterNavigation, RouterNav
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
+import { AUTH_STATE_TOKEN, AuthState } from '../store';
 import { KeyWithExplicitEngine, environment, keyEngine } from '../common';
 
 const LOCAL_STORAGE: KeyWithExplicitEngine[] = [
-  // keyEngine(GLOBAL_STATE_TOKEN, 'local'),
-  // keyEngine(UID_STATE_TOKEN, 'local')
+  keyEngine(AUTH_STATE_TOKEN, 'local'),
 ];
 
 const SESSION_STORAGE: KeyWithExplicitEngine[] = [
 ];
 
-const STATE_MODULES_IMPORT = [
+const STATE = [
+  AuthState
 ];
 
 const filterActionInNgxsLoggerPlugin = (action: any) =>
@@ -24,7 +25,7 @@ const filterActionInNgxsLoggerPlugin = (action: any) =>
 
 export const useNgxsProviders: EnvironmentProviders[] = [
   importProvidersFrom(
-    NgxsModule.forRoot(undefined, {
+    NgxsModule.forRoot(STATE, {
       compatibility: {
         strictContentSecurityPolicy: true
       },
@@ -44,7 +45,6 @@ export const useNgxsProviders: EnvironmentProviders[] = [
       disabled: environment.production,
       filter: filterActionInNgxsLoggerPlugin
     }),
-    NgxsRouterPluginModule.forRoot(),
-    // STATE_MODULES_IMPORT
+    NgxsRouterPluginModule.forRoot()
   )
 ];
