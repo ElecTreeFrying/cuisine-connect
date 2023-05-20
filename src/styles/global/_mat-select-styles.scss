@@ -1,0 +1,64 @@
+@mixin init {
+
+  .mdc-menu-surface .mdc-list-item {
+    min-height: 36px;
+    &.mdc-list-item--selected
+    .mdc-list-item__primary-text {
+      color: black !important;
+      font-weight: 500 !important;
+    }
+    .mdc-list-item__primary-text {
+      letter-spacing: normal !important;
+      font-size: 15px !important;
+    }
+    .mat-pseudo-checkbox {
+      background-color: #6CB508;
+    }
+  }
+}
+
+@mixin formFieldSelectInit {
+
+  .mat-mdc-select.ui-form-field-select {
+
+    display: inline-block;
+    letter-spacing: 0;
+  
+    height: 20px;
+    width: calc(100% - 100px - 8px);
+  
+    .mat-mdc-select-value,
+    .mat-mdc-select-value-text,
+    .mat-mdc-select-min-line {
+      display: block;
+      line-height: 20px;
+      transform: translateY(-0.5px);
+    }
+  
+    .mat-mdc-select-arrow {
+      color: rgba(black, 0.6);
+    }
+
+    &.opened .mat-mdc-select-arrow {
+      color: #202124;
+      svg {
+        transform: translate(-12px, -12px) rotate(180deg);
+      }
+    }
+
+    .mat-mdc-select-arrow {
+      transform: translateY(-2px);
+      transition: color ease 0.3s;
+      svg {
+        transform: translate(-12px, -12px) rotate(0);
+        transition: transform ease 0.3s;
+      }
+    }
+
+    .mat-mdc-select-min-line {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+    }
+  }
+}

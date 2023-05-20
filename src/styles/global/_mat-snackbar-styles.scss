@@ -1,0 +1,13 @@
+@mixin init {
+
+  .mdc-snackbar.mdc-snackbar--open.fisendo-snackbar {
+
+    .mdc-button__label {
+      color: white;
+    }
+    .mat-mdc-snack-bar-action {
+      background-color: #e09d01;
+    }
+
+  }
+}

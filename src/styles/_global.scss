@@ -1,0 +1,42 @@
+@use './global/mat-select-styles' as globalMatSelectStyles;
+@use './global/mat-snackbar-styles' as globalMatSnackbarStyles;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #e8e8e8;
+}
+
+img:not(.png) {
+  background-color: rgba(black, 0.1);
+}
+
+// MDC Letter Spacing
+.mdc-button,
+.mdc-list-item__primary-text,
+.mdc-dialog__content  {
+  letter-spacing: 0 !important;
+}
+
+// Angular Material Ripple
+.mat-ripple {
+  cursor: pointer;
+  user-select: none;
+}
+
+// Angular Material Icon
+.mat-icon {
+  user-select: none;
+}
+
+// Angular Material Select
+@include globalMatSelectStyles.init;
+@include globalMatSelectStyles.formFieldSelectInit;
+
+// Angular Material Snackbar
+@include globalMatSnackbarStyles.init;
