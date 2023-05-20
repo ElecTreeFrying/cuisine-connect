@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { imports, viewProviders } from './root.config';
-import { AuthStateService } from '../common/auth-state.service';
+import { RootService } from './root.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ import { AuthStateService } from '../common/auth-state.service';
 export class RootComponent {
 
   constructor(
-    authState: AuthStateService
+    public service: RootService
   ) { }
   
 }

@@ -1,19 +1,21 @@
 .mat-toolbar {
 
-  [class^="toolbar--action-"] {
+  gap: 8px;
+
+  .toolbar--app-name {
+    margin-right: auto;
+  }
+
+  .toolbar--divider {
+    margin: 0 8px;
+  }
+
+  .toolbar--action {
     cursor: pointer;
     user-select: none;
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  .toolbar--action-login {
-    margin-left: auto;
-  }
-
-  .toolbar--divider {
-    margin: 0 8px;
   }
 
 }

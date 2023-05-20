@@ -1,11 +1,12 @@
-<!-- <mat-toolbar>
+<ng-container *ngIf="service.authenticated$ | async">
+  <mat-toolbar>
+  
+    <span class="toolbar--app-name">Cuisine Connect</span>
 
-  <span>Cuisine Connect</span>
-
-  <span class="toolbar--action-login">Login</span>
-  <span class="toolbar--divider">/</span>
-  <span class="toolbar--action-register">Register</span>
-
-</mat-toolbar> -->
+    <button mat-button>Manage profile</button>
+    <button mat-button (click)="service.logout()">Logout</button>
+  
+  </mat-toolbar>
+</ng-container>
 
 <router-outlet></router-outlet>
