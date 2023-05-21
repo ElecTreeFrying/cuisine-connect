@@ -1,0 +1,26 @@
+<button mat-icon-button mat-dialog-close>
+  <mat-icon>close</mat-icon>
+</button>
+
+<div class="dialog--image-cover">
+  <img [src]="data.photo" [alt]="data.dishName">
+</div>
+
+<div class="dialog--section">
+
+  <h2 class="dialog--section-title">{{ data.dishName }}</h2>
+  
+  <h3 class="dialog--section-head">Steps</h3>
+  <ol>
+    <li *ngFor="let cookingStep of data.cookingSteps;">{{ cookingStep }}</li>
+  </ol>
+  <h3 class="dialog--section-head">Ingredients</h3>
+  <ul>
+    <li *ngFor="let ingredient of data.ingredients;">{{ ingredient }}</li>
+  </ul>
+  <h3 class="dialog--section-head">Cooking time</h3>
+  <ul>
+    <li>{{ data.cookingTime }}</li>
+  </ul>
+
+</div>

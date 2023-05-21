@@ -1,21 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, DocumentData, DocumentReference, addDoc, collection, collectionData, getFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-
-export interface Recipe {
-  dishName: string;
-  ingredients: string[];
-  cookingSteps: string[];
-  cookingTime: string;
-  photo: string;
-}
+import { CollectionReference, DocumentData, DocumentReference, addDoc, collection, collectionSnapshots, getFirestore } from '@angular/fire/firestore';
+import { Recipe } from 'src/app/store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesFirestoreService {
-
-  constructor() { }
 
   private get collection(): CollectionReference<DocumentData> {
     return collection(getFirestore(), 'recipes');
@@ -25,8 +15,10 @@ export class RecipesFirestoreService {
     return addDoc(this.collection, data as Recipe);
   }
 
-  get collection$(): Observable<Recipe[]> {
-    return collectionData(this.collection) as Observable<Recipe[]>;
+  get collection$() {
+    return collectionSnapshots(this.collection);
   }
 
 }
+
+export { Recipe } from 'src/app/store';

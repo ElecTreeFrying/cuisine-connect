@@ -7,7 +7,7 @@ import { Store } from '@ngxs/store';
 
 import { SnackbarService } from '../common';
 import { errorMessageByErrorCode } from './auth';
-import { AuthAction } from 'src/app/store';
+import { AppAction } from 'src/app/store';
 
 @Injectable()
 export class AuthService {
@@ -68,7 +68,7 @@ export class AuthService {
 
   private authenticate(): void {
     this.firebaseComplete();
-    this.store.dispatch(new AuthAction.Login);
+    this.store.dispatch(new AppAction.UpdateAuthenticationState(true));
     this.router.navigate([ '/' ]);
   }
 

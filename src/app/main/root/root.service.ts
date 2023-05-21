@@ -4,13 +4,13 @@ import { Auth, authState, signOut } from '@angular/fire/auth';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { AuthAction, AuthState } from '../../store';
-import { AuthStateService } from '../common';
+import { AppAction, AppState } from '../../store';
+import { AppStateService } from '../common';
 
 @Injectable()
 export class RootService {
 
-  @Select(AuthState.authenticated) authenticated$!: Observable<boolean>;
+  @Select(AppState.authenticated) authenticated$!: Observable<boolean>;
 
   authState$ = authState(this.auth);
 
@@ -18,12 +18,12 @@ export class RootService {
     private router: Router,
     private auth: Auth,
     private store: Store,
-    _: AuthStateService
+    _: AppStateService
   ) { }
 
   logout(): void {
     signOut(this.auth);
-    this.store.dispatch(new AuthAction.Logout);
+    this.store.dispatch(new AppAction.UpdateAuthenticationState(false));
     this.router.navigateByUrl('/auth');
   }
 

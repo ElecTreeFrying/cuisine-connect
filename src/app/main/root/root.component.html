@@ -10,21 +10,46 @@
         <button mat-button routerLink="/search-dish">Search a dish</button>
         <button mat-button routerLink="/add-recipe">Add a recipe</button>
   
-        <div
-          class="toolbar--image-button"
-          [matMenuTriggerFor]="userMenu"
-          #userMenuTrigger="matMenuTrigger">
-          <img [src]="(service.authState$ | async)?.photoURL" alt="user-image" height="45" width="45">
-          <mat-icon>arrow_drop_{{ userMenuTrigger.menuOpen ? 'up' : 'down' }}</mat-icon>
+        <div class="toolbar--actions">
+          <div
+            class="toolbar--image-button"
+            [matMenuTriggerFor]="userMenu"
+            #userMenuTrigger="matMenuTrigger">
+            <img [src]="(service.authState$ | async)?.photoURL" alt="user-image" height="45" width="45">
+            <mat-icon>arrow_drop_{{ userMenuTrigger.menuOpen ? 'up' : 'down' }}</mat-icon>
+          </div>
+          <div
+            matRipple
+            class="toolbar--language"
+            [matMenuTriggerFor]="languageMenu"
+            #languageMenuTrigger="matMenuTrigger">
+            <span>EN</span>
+            <mat-icon>language</mat-icon>
+          </div>
         </div>
+
+        <mat-menu 
+          xPosition="before"
+          #userMenu="matMenu">
+          <button mat-menu-item routerLink="/manage-profile">
+            <mat-icon>person</mat-icon>
+            <span>Manage profile</span>
+          </button>
+          <button mat-menu-item (click)="service.logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+
+        <mat-menu 
+          xPosition="before"
+          #languageMenu="matMenu">
+          <button mat-menu-item>English</button>
+          <button mat-menu-item>Latvian</button>
+          <button mat-menu-item>Russian</button>
+        </mat-menu>
+
       </ng-container>
-  
-      <mat-menu 
-        xPosition="before"
-        #userMenu="matMenu">
-        <button mat-menu-item routerLink="/manage-profile">Manage profile</button>
-        <button mat-menu-item (click)="service.logout()">Logout</button>
-      </mat-menu>
   
     </mat-toolbar>
   </mat-toolbar>
@@ -39,4 +64,8 @@
       <p>©2023 <span routerLink="/">Cousine Connect.</span> All rights reserved.</p>
     </div>
   </div>
+</div>
+
+<div class="root--content-footer auth" *ngIf="!(service.authenticated$ | async)">
+  <p>©2023 <span routerLink="/">Cousine Connect.</span> All rights reserved.</p>
 </div>

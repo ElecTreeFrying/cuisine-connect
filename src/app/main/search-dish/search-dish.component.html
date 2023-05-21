@@ -1,1 +1,31 @@
-<p>search-dish works!</p>
+<br>
+
+<div class="page--section-head">
+  <h2 class="page--section-title">Recipes</h2>
+  <mat-form-field color="accent" appearance="outline" color="primary" *ngIf="service.recipes$ | filterDish: service.dishNameSearch | async;">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]="service.dishNameSearch">
+  </mat-form-field>
+</div>
+
+<br>
+
+<div class="dishes">
+  <ng-container *ngIf="service.recipes$ | async;else loadingDishes">
+    <mat-card *ngFor="let recipe of service.recipes$ | filterDish: service.dishNameSearch | async;">
+      <mat-card-header>
+        <mat-card-title>{{ recipe.dishName }}</mat-card-title>
+        <mat-card-subtitle>Recipe</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="recipe.photo" [alt]="recipe.dishName" (click)="service.openRecipe(recipe)">
+      <mat-card-actions>
+        <button mat-button (click)="service.openRecipe(recipe)">View more</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+  <ng-template #loadingDishes>
+    <div class="dishes--pending">
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+  </ng-template>
+</div>

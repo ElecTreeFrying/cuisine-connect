@@ -1,5 +1,6 @@
 import { AsyncPipe, NgClass, NgIf } from "@angular/common";
 import { RouterLink, RouterOutlet } from "@angular/router";
+import { MatRippleModule } from "@angular/material/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
@@ -13,6 +14,7 @@ export const imports = [
   AsyncPipe,
   RouterOutlet,
   RouterLink,
+  MatRippleModule,
   MatToolbarModule,
   MatMenuModule,
   MatIconModule,

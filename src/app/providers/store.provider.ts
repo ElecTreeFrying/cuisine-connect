@@ -4,18 +4,18 @@ import { NgxsRouterPluginModule, RouterDataResolved, RouterNavigation, RouterNav
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
-import { AUTH_STATE_TOKEN, AuthState } from '../store';
+import { APP_STATE_TOKEN, AppState } from '../store';
 import { KeyWithExplicitEngine, environment, keyEngine } from '../common';
 
 const LOCAL_STORAGE: KeyWithExplicitEngine[] = [
-  keyEngine(AUTH_STATE_TOKEN, 'local'),
+  keyEngine(APP_STATE_TOKEN, 'local'),
 ];
 
 const SESSION_STORAGE: KeyWithExplicitEngine[] = [
 ];
 
 const STATE = [
-  AuthState
+  AppState
 ];
 
 const filterActionInNgxsLoggerPlugin = (action: any) =>

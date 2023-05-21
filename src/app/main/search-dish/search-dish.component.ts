@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { SearchDishService } from './search-dish.service';
 import { imports, viewProviders } from './search-dish.config';
 
 @Component({
@@ -8,6 +9,14 @@ import { imports, viewProviders } from './search-dish.config';
   styleUrls: ['./search-dish.component.scss'],
   standalone: true, imports, viewProviders
 })
-export class SearchDishComponent {
+export class SearchDishComponent implements OnInit {
+
+  constructor(
+    public service: SearchDishService
+  ) { }
+
+  ngOnInit(): void {
+    this.service.getRecipes();
+  }
 
 }

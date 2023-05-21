@@ -3,6 +3,7 @@ interface Recipe {
   ingredients: string[];
   cookingSteps: string[];
   cookingTime: string;
+  date: string;
   photo: string;
 }
 
@@ -38,6 +39,7 @@ export const recipes: Recipe[] = [
       'Serve the Beef Bourguignon hot, garnished with fresh chopped parsley.'
     ],
     cookingTime: '2 hours 30 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://food-images.files.bbci.co.uk/food/recipes/boeuf_bourguignon_25475_16x9.jpg'
   },
   {
@@ -69,6 +71,7 @@ export const recipes: Recipe[] = [
       'Garnish with fresh parsley before serving.'
     ],
     cookingTime: '30 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.foodandwine.com/thmb/YlvSkk7fsIGE8ywW-bT7Pal9Wh8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/FAW-beef-stroganoff-hero-06-5dc1fb98ed9f4eea97bab613d212eead.jpg'
   },
   {
@@ -91,6 +94,7 @@ export const recipes: Recipe[] = [
       'Serve the Spaghetti Carbonara hot, garnished with chopped parsley if desired.'
     ],
     cookingTime: '20 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.allrecipes.com/thmb/Vg2cRidr2zcYhWGvPD8M18xM_WY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg'
   },
   {
@@ -123,6 +127,7 @@ export const recipes: Recipe[] = [
       'Serve the Chicken Cordon Bleu hot, sliced into medallions, and enjoy!'
     ],
     cookingTime: '45 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.cookingclassy.com/wp-content/uploads/2022/12/chicken-cordon-bleu-26.jpg'
   },
   {
@@ -155,6 +160,7 @@ export const recipes: Recipe[] = [
       'Spanakopita can be served warm or at room temperature.'
     ],
     cookingTime: '1 hour',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.365daysofbakingandmore.com/wp-content/uploads/2015/11/Spanakopita-1.jpg'
   },
   {
@@ -192,6 +198,7 @@ export const recipes: Recipe[] = [
       'Garnish with fresh chopped parsley and serve the Paella with lemon wedges on the side.'
     ],
     cookingTime: '45 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://iamafoodblog.b-cdn.net/wp-content/uploads/2012/07/paella-9174.jpg'
   },
   {
@@ -228,6 +235,7 @@ export const recipes: Recipe[] = [
       'Serve the Moussaka warm and enjoy!'
     ],
     cookingTime: '1 hour 30 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://img.delicious.com.au/-JtzyjeV/del/2018/05/spiced-mushroom-moussaka-with-haloumi-bechamel-80336-2.jpg'
   },
   {
@@ -257,6 +265,7 @@ export const recipes: Recipe[] = [
       'Serve the Chicken Parmesan over cooked spaghetti or with a side of your choice.'
     ],
     cookingTime: '45 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.southernliving.com/thmb/rQaGDkAPGa_MeU4eglrAaeuexjg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/southern-living-chicken-parmesan-ddmfs-0047-fe218cb392784e79bfb4bb586685d6f9.jpg'
   },
   {
@@ -288,6 +297,7 @@ export const recipes: Recipe[] = [
       'Enjoy the Borscht as a hearty and flavorful soup!'
     ],
     cookingTime: '45 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://hips.hearstapps.com/hmg-prod/images/190226-borscht-137-1552084904.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*'
   },
   {
@@ -315,6 +325,7 @@ export const recipes: Recipe[] = [
       'Enjoy the flavors of the Mediterranean!'
     ],
     cookingTime: '15 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.cookingclassy.com/wp-content/uploads/2018/02/greek-salad-4.jpg'
   },
   {
@@ -346,6 +357,7 @@ export const recipes: Recipe[] = [
       'Enjoy the flavorful and colorful medley of vegetables!'
     ],
     cookingTime: '1 hour',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.sprinklesandsprouts.com/wp-content/uploads/2022/04/RatatouilleSQ.jpg'
   },
   {
@@ -376,6 +388,7 @@ export const recipes: Recipe[] = [
       'Slice and serve the Tiramisu chilled, enjoying the creamy and indulgent Italian dessert!'
     ],
     cookingTime: '4 hours',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://i.shgcdn.com/269063bf-d72d-41dd-b848-9b30657696e6/-/format/auto/-/preview/3000x3000/-/quality/lighter/'
   },
   {
@@ -402,6 +415,7 @@ export const recipes: Recipe[] = [
       'Enjoy the rich and savory flavors of this classic French dish!'
     ],
     cookingTime: '40 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://media.houseandgarden.co.uk/photos/6189479a8373470f8394e2e1/3:2/w_1920,h_1280,c_limit/mary-berry-vogue-2-25jun13-pr_bt.jpg'
   },
   {
@@ -432,6 +446,7 @@ export const recipes: Recipe[] = [
       'Enjoy this classic British dish with its crispy fish and perfectly cooked chips!'
     ],
     cookingTime: '45 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.thespruceeats.com/thmb/k8Ejnb3LR7yrhwGirJEC2x6r1sg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/best-fish-and-chips-recipe-434856-Hero-5b61b89346e0fb00500f2141.jpg'
   },
   {
@@ -466,6 +481,7 @@ export const recipes: Recipe[] = [
       'Enjoy the rich and hearty flavors of this Hungarian classic!'
     ],
     cookingTime: '3 hours 30 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://img.delicious.com.au/d65smTMv/w1200/del/2015/10/goulash-soup-15708-2.jpg'
   },
   {
@@ -499,6 +515,7 @@ export const recipes: Recipe[] = [
       'Enjoy the delicious combination of meat, vegetables, and creamy mashed potatoes!'
     ],
     cookingTime: '45 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://hips.hearstapps.com/del.h-cdn.co/assets/18/05/1517424592-shepherds-pie-delish-2.jpg?crop=0.418xw:0.627xh;0.439xw,0.310xh&resize=1200:*'
   },
   {
@@ -525,6 +542,7 @@ export const recipes: Recipe[] = [
       'Enjoy this classic Austrian dish that is crispy on the outside and tender on the inside!'
     ],
     cookingTime: '30 minutes',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.thespruceeats.com/thmb/BS5BdyQsGh5qQyRiuZMannmcxoY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-wiener-schnitzel-recipe-1447089-hero-02-18827aac4cbd4aec926350d4f9778e70.jpg'
   },
   {
@@ -555,6 +573,7 @@ export const recipes: Recipe[] = [
       'Enjoy this Hungarian dish that is creamy, flavorful, and comforting!'
     ],
     cookingTime: '1 hour',
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.simplyrecipes.com/thmb/f6HW-phiUsfMqysRnTKLbVscGhI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2011__03__chicken-paprikash-horiz-c-1400-323c87eb90484db0b1d3bb1b9863917b.jpg'
   },
   {
@@ -589,6 +608,7 @@ export const recipes: Recipe[] = [
       "Enjoy this popular Thai stir-fried noodle dish that is packed with flavors and textures!"
     ],
     cookingTime: "30 minutes",
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.feastingathome.com/wp-content/uploads/2016/04/pad-thai-2.jpg'
   },
   {
@@ -620,6 +640,7 @@ export const recipes: Recipe[] = [
       "Enjoy this classic Japanese dish that features tender and flavorful chicken in a sweet and savory teriyaki sauce!"
     ],
     cookingTime: "30 minutes",
+    date: '2023-05-21T12:57:44.717Z',
     photo: 'https://www.budgetbytes.com/wp-content/uploads/2022/04/Teriyaki-Chicken-plate.jpg'
   }
 ]
