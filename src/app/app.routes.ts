@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authenticatedGuard, notAuthenticatedGuard } from './common';
+import { adminGuard, authenticatedGuard, notAuthenticatedGuard } from './route-guards';
 
 export const APP_ROUTES: Routes = [
   {
@@ -25,6 +25,11 @@ export const APP_ROUTES: Routes = [
     loadComponent: () => import('./main').then(m => m.AuthComponent),
     canActivate: [ notAuthenticatedGuard ],
     title: 'Login or Register | Cuisine Connect'
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./main').then(m => m.ADMIN_ROUTES),
+    canActivate: [ adminGuard ]
   },
   {
     path: '',

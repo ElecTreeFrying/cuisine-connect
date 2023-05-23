@@ -12,11 +12,11 @@ import { RootService } from './root.service';
 export class RootComponent implements OnInit {
 
   constructor(
-    public service: RootService,
+    private service: RootService
   ) { }
 
   ngOnInit(): void {
-    this.service.initializeUserPermissions();
+    this.service.adminStateListener();
   }
-  
+
 }

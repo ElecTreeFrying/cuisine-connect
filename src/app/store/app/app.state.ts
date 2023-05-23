@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, StateToken, createSelector } from '@ngxs/store';
+import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { map, tap } from 'rxjs';
 
-import { AppStateModel, AppAction, Recipe } from '.';
-import { RecipesFirestoreService } from 'src/app/main';
+import { AppStateModel, AppAction, Recipe, CuisineCategory } from '.';
+import { FirestoreService } from 'src/app/main';
 
 export const defaults: AppStateModel = {
   admin: false,
   authenticated: false,
-  recipes: null
+  recipes: null,
+  cuisineCategories: null
 };
 
 export const APP_STATE_TOKEN = new StateToken<AppStateModel>('app');
@@ -22,6 +23,11 @@ export const APP_STATE_TOKEN = new StateToken<AppStateModel>('app');
 export class AppState {
 
   @Selector()
+  static admin(state: AppStateModel): boolean {
+    return state.admin;
+  }
+
+  @Selector()
   static authenticated(state: AppStateModel): boolean {
     return state.authenticated;
   }
@@ -32,42 +38,48 @@ export class AppState {
     return state.recipes.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
-  static getRecipeByDishName(dishName: string): (state: AppStateModel) => Recipe | null {
-    return createSelector([AppState], (state: AppStateModel) => {
-      return state.recipes!.find(e => e.dishName.toLowerCase().includes(dishName.toLowerCase())) || null;
-    });
-  }
-
-  static filteredRecipes(dishName: string): (state: AppStateModel) => Recipe[] | null {
-    return createSelector([AppState], (state: AppStateModel) => {
-      return state.recipes!.filter(e => e.dishName.toLowerCase().includes(dishName.toLowerCase())) || null;
-    });
+  @Selector()
+  static cuisineCategories(state: AppStateModel): CuisineCategory[] | null {
+    if (!state.cuisineCategories) return null;
+    return state.cuisineCategories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   constructor(
-    private recipesService: RecipesFirestoreService
+    private firestore: FirestoreService
   ) { }
 
   @Action(AppAction.UpdateAuthenticationState)
   updateAuthenticationState(ctx: StateContext<AppStateModel>, action: AppAction.UpdateAuthenticationState): void {
     ctx.patchState({
-      admin: action.admin || false,
-      authenticated: action.authenticated,
-      recipes: action.authenticated ? ctx.getState().recipes : null
+      admin: action.state.admin || false,
+      authenticated: action.state.authenticated,
+      recipes: action.state.authenticated ? ctx.getState().recipes : null,
+      cuisineCategories: action.state.authenticated ? ctx.getState().cuisineCategories : null
     });
   }
   
-  @Action(AppAction.GetRecipes)
-  setRecipes(ctx: StateContext<AppStateModel>) {
-    return this.recipesService.collection$.pipe(
-      map(query => query.map(value => value.data() as Recipe)),
-      tap(recipes => ctx.patchState({ recipes }))
-    );
+  @Action(AppAction.RecipesControl)
+  recipesControl(ctx: StateContext<AppStateModel>, { control }: AppAction.RecipesControl) {
+    if (control === 'get') {
+      return this.firestore.recipes$.pipe(
+        map(query => query.map(value => value.data() as Recipe)),
+        tap(recipes => ctx.patchState({ recipes }))
+      );
+    } else {
+      return ctx.patchState({ recipes: null });
+    }
   }
   
-  @Action(AppAction.ClearRecipes)
-  clearRecipes(ctx: StateContext<AppStateModel>) {
-    ctx.patchState({ recipes: null });
+  @Action(AppAction.CuisineCategoryControl)
+  cuisineCategoriesControl(ctx: StateContext<AppStateModel>, { control }: AppAction.RecipesControl) {
+    if (control === 'get') {
+      return this.firestore.cuisineCategories$.pipe(
+        map(query => query.map(value => value.data() as CuisineCategory)),
+        tap(cuisineCategories => ctx.patchState({ cuisineCategories }))
+      );
+    } else {
+      return ctx.patchState({ cuisineCategories: null });
+    }
   }
   
 }

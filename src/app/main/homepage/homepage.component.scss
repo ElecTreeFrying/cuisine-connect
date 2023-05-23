@@ -11,6 +11,12 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 64px;
+
+  .cuisines--pending {
+    flex: 0 1 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .mat-mdc-card {

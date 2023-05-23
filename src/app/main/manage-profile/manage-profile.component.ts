@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { imports, viewProviders } from './manage-profile.config';
+import { ManageProfileService } from './manage-profile.service';
 
 @Component({
   selector: 'app-manage-profile',
@@ -10,4 +11,8 @@ import { imports, viewProviders } from './manage-profile.config';
 })
 export class ManageProfileComponent {
 
+  constructor(
+    public service: ManageProfileService
+  ) { }
+  
 }

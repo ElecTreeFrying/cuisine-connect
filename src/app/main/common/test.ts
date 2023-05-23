@@ -1,11 +1,35 @@
-interface Recipe {
-  dishName: string;
-  ingredients: string[];
-  cookingSteps: string[];
-  cookingTime: string;
-  date: string;
-  photo: string;
-}
+import { CuisineCategory, Recipe } from "./firestore.service"
+
+export const cuisineCategories: CuisineCategory[] = [
+  {
+    title: 'Breakfast',
+    category: 'Cuisine Category',
+    photo: 'assets/breakfast.jpg',
+    date: '2023-05-21T12:57:44.717Z',
+    details: 'Breakfast is a meal that is typically consumed in the morning to break the overnight fasting period and provide nourishment to start the day. It is considered the first meal of the day and is widely regarded as an important and energizing meal.'
+  },
+  {
+    title: 'Lunch',
+    category: 'Cuisine Category',
+    photo: 'assets/lunch.webp',
+    date: '2023-05-21T12:57:44.717Z',
+    details: 'Lunch is a midday meal that is typically consumed during the break between morning and afternoon activities. It serves as a refueling opportunity and a chance to take a break from daily tasks, providing sustenance and a chance to recharge for the rest of the day.'
+  },
+  {
+    title: 'Dinner',
+    category: 'Cuisine Category',
+    photo: 'assets/dinner.jpg',
+    date: '2023-05-21T12:57:44.717Z',
+    details: 'Dinner is a meal that is typically consumed in the evening or late afternoon, serving as the final substantial meal of the day. It is a significant mealtime where individuals and families gather to enjoy a variety of dishes and unwind after a busy day.'
+  },
+  {
+    title: 'Desert',
+    category: 'Cuisine Category',
+    photo: 'assets/dessert.jpg',
+    date: '2023-05-21T12:57:44.717Z',
+    details: 'Desert, often referred to as "dessert," is a cuisine category that encompasses a wide variety of sweet and indulgent dishes typically consumed after a meal. Desserts are known for their delectable flavors, textures, and decorative presentations that can bring a delightful and satisfying end to a dining experience.'
+  }
+]
 
 export const recipes: Recipe[] = [
   {

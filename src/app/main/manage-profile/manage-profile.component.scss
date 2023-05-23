@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  gap: 32px;
+}
+
+.host--image {
+
+  $size: 300px;
+  height: $size;
+  height: $size;
+
+  img {
+    $imgSize: 100%;
+    height: $imgSize;
+    width: $imgSize;
+    border-radius: calc($size/2);
+  }
+}
+
+.host--content {
+  flex: 1 1;
+
+  .host--content-label {
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 8px;
+  }
+  .host--content-data {
+    font-weight: 500;
+    $fontSize: 24px;
+    font-size: $fontSize;
+    line-height: $fontSize;
+    margin-bottom: 24px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .host--content-section-title {
+    margin: 24px 0 32px;
+    $fontSize: 32px;
+    line-height: $fontSize;
+    font-size: $fontSize;
+    font-weight: 500;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  .mat-raised-button {
+    margin-top: 32px;
+  }
+
+}

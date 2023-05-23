@@ -1,7 +1,7 @@
 import { APP_ID, Provider, inject } from "@angular/core";
 
 import { APP_PROVIDER, appId } from "../main";
-import { environment } from "../common";
+import { environment } from '../../environments/environment';
 
 export const useTokenProviders: Provider[] = [
   {

@@ -5,7 +5,8 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 import { APP_STATE_TOKEN, AppState } from '../store';
-import { KeyWithExplicitEngine, environment, keyEngine } from '../common';
+import { KeyWithExplicitEngine, keyEngine } from './state-key-engine';
+import { environment } from '../../environments/environment';
 
 const LOCAL_STORAGE: KeyWithExplicitEngine[] = [
   keyEngine(APP_STATE_TOKEN, 'local'),

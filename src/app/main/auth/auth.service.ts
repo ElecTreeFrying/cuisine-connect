@@ -68,7 +68,7 @@ export class AuthService {
 
   private authenticate(): void {
     this.firebaseComplete();
-    this.store.dispatch(new AppAction.UpdateAuthenticationState(true));
+    this.store.dispatch(new AppAction.UpdateAuthenticationState({ authenticated: true }));
     this.router.navigate([ '/' ]);
   }
 

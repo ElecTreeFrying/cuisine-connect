@@ -8,15 +8,22 @@
 
 <div class="cuisines">
 
-  <mat-card *ngFor="let foodCategory of foodCategories;">
-    <mat-card-header>
-      <mat-card-title>{{ foodCategory.title }}</mat-card-title>
-      <mat-card-subtitle>{{ foodCategory.category }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]="foodCategory.photo" [alt]="foodCategory.title">
-    <mat-card-content>
-      <p>{{ foodCategory.details }}</p>
-    </mat-card-content>
-  </mat-card>
+  <ng-container *ngIf="service.cuisineCategories$ | async;else loadingCuisineCategories">
+    <mat-card *ngFor="let cuisineCategory of service.cuisineCategories$ | async;">
+      <mat-card-header>
+        <mat-card-title>{{ cuisineCategory.title }}</mat-card-title>
+        <mat-card-subtitle>{{ cuisineCategory.category }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="cuisineCategory.photo" [alt]="cuisineCategory.title">
+      <mat-card-content>
+        <p>{{ cuisineCategory.details }}</p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-template #loadingCuisineCategories>
+    <div class="cuisines--pending">
+      <mat-spinner color="primary"></mat-spinner>
+    </div>
+  </ng-template>
   
 </div>

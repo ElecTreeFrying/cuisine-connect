@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import { AppAction } from 'src/app/store';
 import { imports, viewProviders } from './add-recipe.config';
 import { AddRecipeService } from './add-recipe.service';
-import { RecipesFirestoreService, SnackbarService } from '../common';
+import { FirestoreService, SnackbarService } from '../common';
 
 @Component({
   selector: 'app-add-recipe',
@@ -19,7 +19,7 @@ export class AddRecipeComponent implements OnInit {
     public router: Router,
     public store: Store,
     public service: AddRecipeService,
-    private recipesFirestore: RecipesFirestoreService,
+    private firestore: FirestoreService,
     private snackbar: SnackbarService
   ) { }
 
@@ -41,11 +41,11 @@ export class AddRecipeComponent implements OnInit {
     this.snackbar.open({ message: 'Please wait.' , duration: Infinity});
 
     try {
-      await this.recipesFirestore.addDoc(formValue);
+      await this.firestore.addRecipe(formValue);
       this.snackbar.dismiss();
       this.service.form.reset();
       this.router.navigateByUrl('/search-dish');
-      this.store.dispatch(new AppAction.ClearRecipes);
+      this.store.dispatch(new AppAction.RecipesControl('reset'));
     } catch (error) {
       console.error(error);
       this.snackbar.open({ message: 'Something went wrong. Please try again.' , duration: 5000});

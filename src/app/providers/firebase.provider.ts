@@ -7,7 +7,7 @@ import {
   browserLocalPersistence, browserPopupRedirectResolver
 } from '@angular/fire/auth';
 
-import { environment } from '../common';
+import { environment } from '../../environments/environment';
 
 export const useFirebaseProviders: EnvironmentProviders[] = [
   importProvidersFrom(
