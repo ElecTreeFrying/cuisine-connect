@@ -64,7 +64,18 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '2 hours 30 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://food-images.files.bbci.co.uk/food/recipes/boeuf_bourguignon_25475_16x9.jpg'
+    photo: 'https://food-images.files.bbci.co.uk/food/recipes/boeuf_bourguignon_25475_16x9.jpg',
+    calorieContent: 'Approximately 400-500 calories per serving (may vary based on portion size and specific ingredients used)',
+    nutritionalValue: [
+      "Total Fat: Approximately 20-25g",
+      "Saturated Fat: Approximately 7-10g",
+      "Cholesterol: Approximately 70-90mg",
+      "Sodium: Approximately 600-800mg",
+      "Carbohydrates: Approximately 15-20g",
+      "Fiber: Approximately 2-4g",
+      "Sugars: Approximately 4-6g",
+      "Protein: Approximately 30-35g"
+    ]
   },
   {
     dishName: 'Beef Stroganoff',
@@ -96,7 +107,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '30 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.foodandwine.com/thmb/YlvSkk7fsIGE8ywW-bT7Pal9Wh8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/FAW-beef-stroganoff-hero-06-5dc1fb98ed9f4eea97bab613d212eead.jpg'
+    photo: 'https://www.foodandwine.com/thmb/YlvSkk7fsIGE8ywW-bT7Pal9Wh8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/FAW-beef-stroganoff-hero-06-5dc1fb98ed9f4eea97bab613d212eead.jpg',
+    calorieContent: 'Approximately 350-400 calories per serving',
+    nutritionalValue: [
+      "Protein: Beef is a good source of protein. The dish contains protein from the beef slices and sour cream.",
+      "Fat: The dish contains fat from the beef, butter, and sour cream. The amount of fat will depend on the specific cuts of beef and the type of sour cream used.",
+      "Carbohydrates: The dish contains carbohydrates from the onions, mushrooms, flour, and any added noodles or rice. The amount of carbohydrates will vary depending on the serving size and additional ingredients used.",
+      "Fiber: The dish may contain a small amount of dietary fiber from the onions and mushrooms.",
+      "Vitamins and Minerals: The dish may provide various vitamins and minerals, including vitamin C, vitamin D, iron, and potassium. The specific amounts will depend on the ingredients used and their nutritional composition."
+    ]
   },
   {
     dishName: 'Spaghetti Carbonara',
@@ -119,7 +138,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '20 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.allrecipes.com/thmb/Vg2cRidr2zcYhWGvPD8M18xM_WY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg'
+    photo: 'https://www.allrecipes.com/thmb/Vg2cRidr2zcYhWGvPD8M18xM_WY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg',
+    calorieContent: 'Approximately 1194 calories',
+    nutritionalValue: [
+      "Carbohydrates: Approximately 75g",
+      "Protein: Approximately 46g",
+      "Fat: Approximately 60g",
+      "Sodium: Approximately 1950mg",
+      "Calcium: Approximately 380mg"
+    ]
   },
   {
     dishName: 'Chicken Cordon Bleu',
@@ -152,7 +179,16 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '45 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.cookingclassy.com/wp-content/uploads/2022/12/chicken-cordon-bleu-26.jpg'
+    photo: 'https://www.cookingclassy.com/wp-content/uploads/2022/12/chicken-cordon-bleu-26.jpg',
+    calorieContent: 'Approximately 450-500 calories per serving',
+    nutritionalValue: [
+      "Protein: 35-40 grams",
+      "Fat: 20-25 grams",
+      "Carbohydrates: 30-35 grams",
+      "Fiber: 1-2 grams",
+      "Sugar: 1-2 grams",
+      "Sodium: 900-1000 milligrams"
+    ]
   },
   {
     dishName: 'Spanakopita',
@@ -185,7 +221,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '1 hour',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.365daysofbakingandmore.com/wp-content/uploads/2015/11/Spanakopita-1.jpg'
+    photo: 'https://www.365daysofbakingandmore.com/wp-content/uploads/2015/11/Spanakopita-1.jpg',
+    calorieContent: 'Approximately 2,000 calories',
+    nutritionalValue: [
+      "Fat: Spanakopita is a rich dish, with a significant amount of fat coming from feta cheese, ricotta cheese, and butter. It also contains some healthy fats from spinach and eggs.",
+      "Protein: Spanakopita is a good source of protein due to the presence of feta cheese, ricotta cheese, and eggs.",
+      "Carbohydrates: Phyllo pastry provides the main source of carbohydrates in Spanakopita.",
+      "Fiber: Spinach is a good source of dietary fiber.",
+      "Vitamins and Minerals: Spanakopita contains various vitamins and minerals from ingredients such as spinach, garlic, dill, parsley, and eggs."
+    ]
   },
   {
     dishName: 'Paella',
@@ -223,7 +267,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '45 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://iamafoodblog.b-cdn.net/wp-content/uploads/2012/07/paella-9174.jpg'
+    photo: 'https://iamafoodblog.b-cdn.net/wp-content/uploads/2012/07/paella-9174.jpg',
+    calorieContent: 'Around 500-600 calories per serving',
+    nutritionalValue: [
+      "Carbohydrates: Approximately 60-70 grams",
+      "Protein: Approximately 25-30 grams",
+      "Fat: Approximately 15-20 grams",
+      "Fiber: Approximately 3-5 grams",
+      "Sodium: Approximately 700-900 milligrams"
+    ]
   },
   {
     dishName: 'Moussaka',
@@ -260,7 +312,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '1 hour 30 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://img.delicious.com.au/-JtzyjeV/del/2018/05/spiced-mushroom-moussaka-with-haloumi-bechamel-80336-2.jpg'
+    photo: 'https://img.delicious.com.au/-JtzyjeV/del/2018/05/spiced-mushroom-moussaka-with-haloumi-bechamel-80336-2.jpg',
+    calorieContent: 'Approximately 2,000-2,500 calories',
+    nutritionalValue: [
+      "Calories: Around 330-420 calories per serving",
+      "Protein: Approximately 18-24 grams",
+      "Carbohydrates: Approximately 20-30 grams",
+      "Fat: Approximately 20-25 grams",
+      "Fiber: Approximately 5-8 grams"
+    ]
   },
   {
     dishName: 'Chicken Parmesan',
@@ -290,7 +350,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '45 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.southernliving.com/thmb/rQaGDkAPGa_MeU4eglrAaeuexjg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/southern-living-chicken-parmesan-ddmfs-0047-fe218cb392784e79bfb4bb586685d6f9.jpg'
+    photo: 'https://www.southernliving.com/thmb/rQaGDkAPGa_MeU4eglrAaeuexjg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/southern-living-chicken-parmesan-ddmfs-0047-fe218cb392784e79bfb4bb586685d6f9.jpg',
+    calorieContent: 'Approximately 1530 to 2010 calories per serving.',
+    nutritionalValue: [
+      "Protein: Chicken is a good source of protein.",
+      "Carbohydrates: Breadcrumbs and spaghetti contribute to the carbohydrate content.",
+      "Fat: Parmesan cheese, mozzarella cheese, and cooking oil contribute to the fat content.",
+      "Fiber: The dish is not particularly high in fiber.",
+      "Vitamins and Minerals: The dish contains some vitamins and minerals, including calcium from the cheese and various nutrients from the chicken and other ingredients."
+    ]
   },
   {
     dishName: 'Borscht',
@@ -322,7 +390,14 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '45 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://hips.hearstapps.com/hmg-prod/images/190226-borscht-137-1552084904.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*'
+    photo: 'https://hips.hearstapps.com/hmg-prod/images/190226-borscht-137-1552084904.jpg?crop=0.888888888888889xw:1xh;center,top&resize=1200:*',
+    calorieContent: 'Approximately 250-300 calories per serving (assuming 4-6 servings)',
+    nutritionalValue: [
+      "Fat: Approximately 10-15 grams",
+      "Carbohydrates: Approximately 35-40 grams",
+      "Protein: Approximately 5-8 grams",
+      "Fiber: Approximately 5-8 grams"
+    ]
   },
   {
     dishName: 'Greek Salad',
@@ -350,7 +425,22 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '15 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.cookingclassy.com/wp-content/uploads/2018/02/greek-salad-4.jpg'
+    photo: 'https://www.cookingclassy.com/wp-content/uploads/2018/02/greek-salad-4.jpg',
+    calorieContent: 'Around 210-250 calories per serving.',
+    nutritionalValue: [
+      "Total Fat: 16-18 grams",
+      "Saturated Fat: 4-6 grams",
+      "Cholesterol: 15-20 milligrams",
+      "Sodium: 450-500 milligrams",
+      "Total Carbohydrate: 12-15 grams",
+      "Dietary Fiber: 4-5 grams",
+      "Sugars: 6-8 grams",
+      "Protein: 4-6 grams",
+      "Vitamin A: 80-100% of the Daily Value (DV)",
+      "Vitamin C: 90-110% of the DV",
+      "Calcium: 15-20% of the DV",
+      "Iron: 6-8% of the DV"
+    ]
   },
   {
     dishName: 'Ratatouille',
@@ -382,7 +472,18 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '1 hour',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.sprinklesandsprouts.com/wp-content/uploads/2022/04/RatatouilleSQ.jpg'
+    photo: 'https://www.sprinklesandsprouts.com/wp-content/uploads/2022/04/RatatouilleSQ.jpg',
+    calorieContent: 'Approximately 150-200 calories per serving',
+    nutritionalValue: [
+      "Carbohydrates: Approximately 20-25 grams",
+      "Protein: Approximately 3-5 grams",
+      "Fat: Approximately 8-10 grams",
+      "Fiber: Approximately 6-8 grams",
+      "Vitamin A: Rich in vitamin A, especially from the bell peppers and tomatoes.",
+      "Vitamin C: Good source of vitamin C, mainly from the bell peppers and tomatoes.",
+      "Potassium: Contains a moderate amount of potassium from the vegetables.",
+      "Other essential vitamins and minerals: Ratatouille also provides smaller amounts of vitamin K, vitamin B6, folate, and various minerals like manganese and magnesium."
+    ]
   },
   {
     dishName: 'Tiramisu',
@@ -413,7 +514,17 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '4 hours',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://i.shgcdn.com/269063bf-d72d-41dd-b848-9b30657696e6/-/format/auto/-/preview/3000x3000/-/quality/lighter/'
+    photo: 'https://i.shgcdn.com/269063bf-d72d-41dd-b848-9b30657696e6/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
+    calorieContent: 'Around 300-400 calories.',
+    nutritionalValue: [
+      "Protein: 5-8 grams",
+      "Fat: 20-30 grams",
+      "Carbohydrates: 20-30 grams",
+      "Fiber: 0-2 grams",
+      "Sugar: 10-20 grams",
+      "Sodium: 30-60 milligrams",
+      "Cholesterol: 150-250 milligrams"
+    ]
   },
   {
     dishName: 'Quiche Lorraine',
@@ -440,7 +551,18 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '40 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://media.houseandgarden.co.uk/photos/6189479a8373470f8394e2e1/3:2/w_1920,h_1280,c_limit/mary-berry-vogue-2-25jun13-pr_bt.jpg'
+    photo: 'https://media.houseandgarden.co.uk/photos/6189479a8373470f8394e2e1/3:2/w_1920,h_1280,c_limit/mary-berry-vogue-2-25jun13-pr_bt.jpg',
+    calorieContent: 'Approximately 450-500 calories per serving',
+    nutritionalValue: [
+      "Total Fat: Approximately 35-40 grams",
+      "Saturated Fat: Approximately 16-20 grams",
+      "Cholesterol: Approximately 230-250 milligrams",
+      "Sodium: Approximately 500-600 milligrams",
+      "Carbohydrates: Approximately 15-20 grams",
+      "Fiber: Approximately 1 gram",
+      "Sugar: Approximately 2 grams",
+      "Protein: Approximately 15-20 grams"
+    ]
   },
   {
     dishName: 'Fish and Chips',
@@ -471,7 +593,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '45 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.thespruceeats.com/thmb/k8Ejnb3LR7yrhwGirJEC2x6r1sg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/best-fish-and-chips-recipe-434856-Hero-5b61b89346e0fb00500f2141.jpg'
+    photo: 'https://www.thespruceeats.com/thmb/k8Ejnb3LR7yrhwGirJEC2x6r1sg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/best-fish-and-chips-recipe-434856-Hero-5b61b89346e0fb00500f2141.jpg',
+    calorieContent: 'Approximately 800-1200 calories.',
+    nutritionalValue: [
+      "Protein: Fish is a good source of protein, providing around 20-30 grams per serving.",
+      "Fat: The amount of fat can vary depending on the type of fish and the frying method. Fish itself is relatively low in fat, but the batter and frying process can add significant fat content. A serving of Fish and Chips can contain around 30-60 grams of fat.",
+      "Carbohydrates: The carbohydrate content mainly comes from the potatoes used for the fries. A serving of Fish and Chips may contain around 80-100 grams of carbohydrates.",
+      "Fiber: The fiber content in Fish and Chips is typically low, as fish and fried potatoes are not significant sources of dietary fiber.",
+      "Sodium: The sodium content can be relatively high due to the use of salt in the batter, seasoning, and frying process. A serving of Fish and Chips can contain several hundred milligrams to over a thousand milligrams of sodium."
+    ]
   },
   {
     dishName: 'Goulash',
@@ -506,7 +636,15 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '3 hours 30 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://img.delicious.com.au/d65smTMv/w1200/del/2015/10/goulash-soup-15708-2.jpg'
+    photo: 'https://img.delicious.com.au/d65smTMv/w1200/del/2015/10/goulash-soup-15708-2.jpg',
+    calorieContent: 'Approximately 350-400 calories per serving',
+    nutritionalValue: [
+      "Fat: Approximately 20-25 grams",
+      "Carbohydrates: Approximately 15-20 grams",
+      "Protein: Approximately 25-30 grams",
+      "Fiber: Approximately 3-5 grams",
+      "Sodium: Approximately 800-1000 milligrams"
+    ]
   },
   {
     dishName: 'Shepherd\'s Pie',
@@ -540,7 +678,18 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '45 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://hips.hearstapps.com/del.h-cdn.co/assets/18/05/1517424592-shepherds-pie-delish-2.jpg?crop=0.418xw:0.627xh;0.439xw,0.310xh&resize=1200:*'
+    photo: 'https://hips.hearstapps.com/del.h-cdn.co/assets/18/05/1517424592-shepherds-pie-delish-2.jpg?crop=0.418xw:0.627xh;0.439xw,0.310xh&resize=1200:*',
+    calorieContent: 'Approximately 450-550 calories per serving',
+    nutritionalValue: [
+      "Fat: 20-30 grams",
+      "Saturated Fat: 9-15 grams",
+      "Cholesterol: 60-80 milligrams",
+      "Carbohydrates: 40-50 grams",
+      "Fiber: 4-6 grams",
+      "Sugar: 5-8 grams",
+      "Protein: 20-25 grams",
+      "Sodium: 600-800 milligrams"
+    ]
   },
   {
     dishName: 'Wiener Schnitzel',
@@ -567,7 +716,14 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '30 minutes',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.thespruceeats.com/thmb/BS5BdyQsGh5qQyRiuZMannmcxoY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-wiener-schnitzel-recipe-1447089-hero-02-18827aac4cbd4aec926350d4f9778e70.jpg'
+    photo: 'https://www.thespruceeats.com/thmb/BS5BdyQsGh5qQyRiuZMannmcxoY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-wiener-schnitzel-recipe-1447089-hero-02-18827aac4cbd4aec926350d4f9778e70.jpg',
+    calorieContent: 'Around 400-500 calories',
+    nutritionalValue: [
+      "Protein: Approximately 30-40 grams",
+      "Carbohydrates: About 20-30 grams",
+      "Fat: Around 20-30 grams",
+      "Sodium: Varies depending on the amount of salt used in the recipe"
+    ]
   },
   {
     dishName: 'Chicken Paprikash',
@@ -598,7 +754,19 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: '1 hour',
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.simplyrecipes.com/thmb/f6HW-phiUsfMqysRnTKLbVscGhI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2011__03__chicken-paprikash-horiz-c-1400-323c87eb90484db0b1d3bb1b9863917b.jpg'
+    photo: 'https://www.simplyrecipes.com/thmb/f6HW-phiUsfMqysRnTKLbVscGhI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2011__03__chicken-paprikash-horiz-c-1400-323c87eb90484db0b1d3bb1b9863917b.jpg',
+    calorieContent: 'Approximately 400-500 calories.',
+    nutritionalValue: [
+      "Fat: 25-30 grams",
+      "Carbohydrates: 20-30 grams",
+      "Protein: 20-30 grams",
+      "Sodium: 600-800 milligrams",
+      "Fiber: 2-4 grams",
+      "Vitamin A: 10-15% of the recommended daily intake",
+      "Vitamin C: 4-8% of the recommended daily intake",
+      "Calcium: 6-8% of the recommended daily intake",
+      "Iron: 10-15% of the recommended daily intake"
+    ]
   },
   {
     dishName: "Pad Thai",
@@ -633,7 +801,18 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: "30 minutes",
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.feastingathome.com/wp-content/uploads/2016/04/pad-thai-2.jpg'
+    photo: 'https://www.feastingathome.com/wp-content/uploads/2016/04/pad-thai-2.jpg',
+    calorieContent: 'Approximately 400-500 calories per serving',
+    nutritionalValue: [
+      "Total Fat: Around 10-15 grams",
+      "Saturated Fat: Approximately 2-4 grams",
+      "Cholesterol: Around 150-200 milligrams",
+      "Carbohydrates: Approximately 60-70 grams",
+      "Fiber: Around 2-4 grams",
+      "Sugar: Approximately 5-8 grams",
+      "Protein: Around 15-20 grams",
+      "Sodium: Approximately 800-1200 milligrams"
+    ]
   },
   {
     dishName: "Chicken Teriyaki",
@@ -665,6 +844,14 @@ export const recipes: Recipe[] = [
     ],
     cookingTime: "30 minutes",
     date: '2023-05-21T12:57:44.717Z',
-    photo: 'https://www.budgetbytes.com/wp-content/uploads/2022/04/Teriyaki-Chicken-plate.jpg'
+    photo: 'https://www.budgetbytes.com/wp-content/uploads/2022/04/Teriyaki-Chicken-plate.jpg',
+    calorieContent: 'Approximately 300-350 calories per serving',
+    nutritionalValue: [
+      "Protein: Approximately 25-30 grams",
+      "Fat: Approximately 5-10 grams",
+      "Carbohydrates: Approximately 30-35 grams",
+      "Fiber: Approximately 1-2 grams",
+      "Sugar: Approximately 15-20 grams"
+    ]
   }
 ]

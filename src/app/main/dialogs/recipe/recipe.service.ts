@@ -1,9 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { Recipe } from '../../common';
+
+@Injectable()
 export class RecipeService {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
+
+  initializeQueryParams(recipe: Recipe): void {
+    this.router.navigate([], {
+      queryParamsHandling: 'merge',
+      queryParams: { cuisine: recipe.uid }
+    });
+  }
+  
+  removeQueryParams(): void {
+    this.router.navigate([], {
+      queryParamsHandling: 'merge',
+      queryParams: { cuisine: null }
+    });
+  }
+
 }

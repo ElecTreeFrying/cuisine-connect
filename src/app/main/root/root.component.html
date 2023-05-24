@@ -2,13 +2,27 @@
   <mat-toolbar class="toolbar mat-elevation-z1" color="primary">
     <mat-toolbar class="toolbar--content" color="primary">
     
-      <span class="toolbar--app-name" routerLink="/">Cuisine Connect</span>
+      <ng-container *ngIf="service.adminPortal$ | async;else defaultAppTitle">
+        <span class="toolbar--app-name" routerLink="/admin">Admin Portal</span>
+      </ng-container>
+      <ng-template #defaultAppTitle>
+        <span class="toolbar--app-name" routerLink="/">Cuisine Connect</span>
+      </ng-template>
   
       <ng-container *ngIf="service.authState.currentUser$| async as currentUser">
 
-        <button mat-button routerLink="/">Cuisine categories</button>
-        <button mat-button routerLink="/search-dish">Search a dish</button>
-        <button mat-button routerLink="/add-recipe">Add a recipe</button>
+        <ng-container *ngIf="service.adminPortal$ | async;else defaultAppNavigations">
+          <button mat-button routerLink="/admin">Dashboard</button>
+          <button mat-button routerLink="/admin/manage-cuisines">Manage cuisines</button>
+          <button mat-button routerLink="/admin/manage-recipes">Manage recipes</button>
+          <button mat-button routerLink="/admin/manage-users">Manage users</button>
+        </ng-container>
+        <ng-template #defaultAppNavigations>
+          <button mat-button routerLink="/">Cuisine categories</button>
+          <button mat-button routerLink="/search-dish">Search a dish</button>
+          <button mat-button routerLink="/add-recipe">Add a recipe</button>
+        </ng-template>
+
   
         <div class="toolbar--actions">
           <div
@@ -23,7 +37,7 @@
             class="toolbar--language"
             [matMenuTriggerFor]="languageMenu"
             #languageMenuTrigger="matMenuTrigger">
-            <span>EN</span>
+            <span>{{ (service.language$ | async) | uppercase }}</span>
             <mat-icon>language</mat-icon>
           </div>
         </div>
@@ -31,30 +45,38 @@
         <mat-menu 
           xPosition="before"
           #userMenu="matMenu">
-          <button mat-menu-item routerLink="/manage-profile">
-            <mat-icon>person</mat-icon>
-            <span>Manage profile</span>
-          </button>
-          <button mat-menu-item routerLink="/admin">
-            <mat-icon>admin_panel_settings</mat-icon>
-            <span>Switch to admin portal</span>
-          </button>
-          <button mat-menu-item routerLink="/admin">
-            <mat-icon>autorenew</mat-icon>
-            <span>Switch to default</span>
-          </button>
-          <button mat-menu-item (click)="service.logout()">
-            <mat-icon>logout</mat-icon>
-            <span>Logout</span>
-          </button>
+          <ng-container *ngIf="service.adminPortal$ | async;else defaultMenuSwitch">
+            <button mat-menu-item routerLink="/">
+              <mat-icon>autorenew</mat-icon>
+              <span>Switch to Cuisine Connect</span>
+            </button>
+            <button mat-menu-item (click)="service.logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </ng-container>
+          <ng-template #defaultMenuSwitch>
+            <button mat-menu-item routerLink="/manage-profile">
+              <mat-icon>person</mat-icon>
+              <span>Manage profile</span>
+            </button>
+            <button mat-menu-item routerLink="/admin">
+              <mat-icon>admin_panel_settings</mat-icon>
+              <span>Switch to Admin Portal</span>
+            </button>
+            <button mat-menu-item (click)="service.logout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </ng-template>
         </mat-menu>
 
         <mat-menu 
           xPosition="before"
           #languageMenu="matMenu">
-          <button mat-menu-item>English</button>
-          <button mat-menu-item>Latvian</button>
-          <button mat-menu-item>Russian</button>
+          <button mat-menu-item (click)="service.changeLanguage('en')">English</button>
+          <button mat-menu-item (click)="service.changeLanguage('lv')">Latvian</button>
+          <button mat-menu-item (click)="service.changeLanguage('ru')">Russian</button>
         </mat-menu>
 
       </ng-container>

@@ -10,6 +10,7 @@ export const appConfig: ApplicationConfig = {
     Provider.useTokenProviders,
     Provider.useMaterialProviders,
     Provider.useFirebaseProviders,
+    Provider.useTranslateProviders,
     Provider.useNgxsProviders
   ]
 };

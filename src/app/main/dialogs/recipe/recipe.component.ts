@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 
 import { RecipeService } from './recipe.service';
 import { imports, viewProviders } from './recipe.config';
@@ -11,11 +11,19 @@ import { Recipe } from '../../common';
   styleUrls: ['./recipe.component.scss'],
   standalone: true, imports, viewProviders
 })
-export class RecipeComponent {
+export class RecipeComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Recipe,
-    public service: RecipeService
+    private service: RecipeService
   ) { }
+  
+  ngOnInit(): void {
+    this.service.initializeQueryParams(this.data)
+  }
+
+  ngOnDestroy(): void {
+    this.service.removeQueryParams();
+  }
 
 }

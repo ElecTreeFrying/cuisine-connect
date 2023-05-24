@@ -1,0 +1,20 @@
+{
+  "toolbar": {
+    "option1": "Cuisine categories",
+    "option2": "Search a dish",
+    "option3": "Add a recipe",
+    "menuOption1": "Manage profile",
+    "menuOption2": "Search to Admin Portal",
+    "menuOption3": "Logout",
+    "admin": {
+      "option1": "Cuisine categories",
+      "option2": "Search a dish",
+      "option3": "Add a recipe",
+      "menuOption1": "Search to Cuisine Connect",
+      "menuOption2": "Logout"
+    }
+  },
+  "footer": {
+    "text1": "All rights reserved."
+  }
+}

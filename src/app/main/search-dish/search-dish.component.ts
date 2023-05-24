@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { SearchDishService } from './search-dish.service';
 import { imports, viewProviders } from './search-dish.config';
@@ -11,12 +11,15 @@ import { imports, viewProviders } from './search-dish.config';
 })
 export class SearchDishComponent implements OnInit {
 
+  @Input() cuisine!: string
+
   constructor(
     public service: SearchDishService
   ) { }
 
   ngOnInit(): void {
     this.service.getRecipes();
+    this.service.checkDialogCuisineQueryParam(this.cuisine);
   }
 
 }

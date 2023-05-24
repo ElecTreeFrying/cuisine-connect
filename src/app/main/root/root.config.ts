@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgIf } from "@angular/common";
+import { AsyncPipe, NgClass, NgIf, UpperCasePipe } from "@angular/common";
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { MatRippleModule } from "@angular/material/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -12,6 +12,7 @@ export const imports = [
   NgIf,
   NgClass,
   AsyncPipe,
+  UpperCasePipe,
   RouterOutlet,
   RouterLink,
   MatRippleModule,

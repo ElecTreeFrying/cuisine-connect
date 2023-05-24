@@ -1,6 +1,7 @@
 :host {
   display: flex;
-  gap: 32px;
+  gap: 64px;
+  margin-top: 54px;
 }
 
 .host--image {
@@ -46,8 +47,18 @@
       margin-top: 0;
     }
   }
+
+  .host--content-section-description {
+    font-size: 16px;
+    transform: translateY(-16px);
+  }
+
+  .mat-divider {
+    margin: 48px 0;
+  }
+
   .mat-raised-button {
-    margin-top: 32px;
+    margin-top: 48px;
   }
 
 }

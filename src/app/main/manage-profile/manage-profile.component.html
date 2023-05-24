@@ -9,25 +9,31 @@
     <p class="host--content-section-title">Profile details</p>
 
     <p class="host--content-label">Email</p>
-    <p class="host--content-data">{{ currentUser.email }}</p>
+    <p class="host--content-data">{{ currentUser?.email }}</p>
   
     <p class="host--content-label">Full name</p>
-    <p class="host--content-data">{{ currentUser.displayName }}</p>
+    <p class="host--content-data">{{ currentUser?.displayName }}</p>
   
-    <p class="host--content-label">Registration date</p>
-    <p class="host--content-data">{{ currentUser.metadata.creationTime }}</p>
-  
-    <p class="host--content-label">Last sign in</p>
-    <p class="host--content-data">{{ currentUser.metadata.lastSignInTime }}</p>
+    <ng-container *ngIf="currentUser?.metadata?.creationTime">
+      <p class="host--content-label">Registration date</p>
+      <p class="host--content-data">{{ currentUser?.metadata?.creationTime }}</p>
+    </ng-container>
+
+    <ng-container *ngIf="currentUser?.metadata?.lastSignInTime">
+      <p class="host--content-label">Last sign in</p>
+      <p class="host--content-data">{{ currentUser?.metadata?.lastSignInTime }}</p>
+    </ng-container>
   
     <mat-divider></mat-divider>
-
+    
     <p class="host--content-section-title">Admin access</p>
 
     <ng-container *ngIf="service.admin$ | async;else nonAdmin">
-      <button mat-raised-button color="primary">Switch to Admin portal</button>
+      <p class="host--content-section-description">You already have access to the admin portal. Please select the button below to switch to the admin portal.</p>
+      <button mat-raised-button color="primary" routerLink="/admin">Switch to Admin portal</button>
     </ng-container>
     <ng-template #nonAdmin>
+      <p class="host--content-section-description">By selecting the button below, you can request access to the admin portal. Please wait for an administrator to accept your request in order to be granted access.</p>
       <button mat-raised-button color="primary">Request admin access</button>
     </ng-template>
 

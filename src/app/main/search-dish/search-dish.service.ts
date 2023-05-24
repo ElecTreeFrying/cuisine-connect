@@ -33,4 +33,13 @@ export class SearchDishService {
     });
   }
 
+  checkDialogCuisineQueryParam(param: string): void {
+    this.dialog.open(RecipeComponent, {
+      data: this.store.selectSnapshot(AppState.recipe(param)),
+      height: '90dvh',
+      width: '700px',
+      autoFocus: false
+    });
+  }
+
 }
