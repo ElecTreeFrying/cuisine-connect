@@ -16,12 +16,10 @@ export class ManageUsersService {
   ) { }
 
   getUserPermissions(): void {
-    this.store.selectSnapshot(AppState.userPermissions)
-    || this.store.dispatch(new AppAction.UserPermissionsControl('get'));
+    this.store.dispatch(new AppAction.UserPermissionsControl('get'));
   }
 
   allowAccessToAdminPortal(uid: string): void {
-    console.log('@@@ allowAccessToAdminPortal', uid);
     this.firestore.updateUserPermissionByUid(uid, {
       admin: true,
       requestTimestamp: null
