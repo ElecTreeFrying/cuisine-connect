@@ -31,3 +31,9 @@ export class CuisineCategoryControl {
   static readonly type = '[App State] CuisineCategoryControl';
   constructor(public control: CollectionControl) { }
 }
+
+export class UserPermissionsControl {
+  static readonly type = '[App State] UserPermissionsControl';
+  constructor(public control: CollectionControl) { }
+}
+

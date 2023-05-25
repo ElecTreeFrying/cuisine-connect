@@ -6,29 +6,70 @@
   <img [src]="data.photo" [alt]="data.dishName">
 </div>
 
-<div class="dialog--section">
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Recipe">
+    <ng-template matTabContent>
 
-  <h2 class="dialog--section-title">{{ data.dishName }}</h2>
-  
-  <h3 class="dialog--section-head">Steps</h3>
-  <ol>
-    <li *ngFor="let cookingStep of data.cookingSteps;">{{ cookingStep }}</li>
-  </ol>
-  <h3 class="dialog--section-head">Ingredients</h3>
-  <ul>
-    <li *ngFor="let ingredient of data.ingredients;">{{ ingredient }}</li>
-  </ul>
-  <h3 class="dialog--section-head">Cooking time</h3>
-  <ul>
-    <li>{{ data.cookingTime }}</li>
-  </ul>
-  <h3 class="dialog--section-head">Nutritional value</h3>
-  <ul>
-    <li *ngFor="let ingredient of data.nutritionalValue;">{{ ingredient }}</li>
-  </ul>
-  <h3 class="dialog--section-head">Calorie content</h3>
-  <ul>
-    <li>{{ data.calorieContent }}</li>
-  </ul>
+      <div class="dialog--section">
 
-</div>
+        <h2 class="dialog--section-title">{{ data.dishName }}</h2>
+        
+        <h3 class="dialog--section-head">Ingredients</h3>
+        <ul>
+          <li *ngFor="let ingredient of data.ingredients;">{{ ingredient }}</li>
+        </ul>
+        <h3 class="dialog--section-head">Steps</h3>
+        <ol>
+          <li *ngFor="let cookingStep of data.cookingSteps;">{{ cookingStep }}</li>
+        </ol>
+        <h3 class="dialog--section-head">Cooking time</h3>
+        <ul>
+          <li>{{ data.cookingTime }}</li>
+        </ul>
+      
+      </div>
+
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Details">
+    <ng-template matTabContent>
+
+      <div class="dialog--section">
+
+        <h2 class="dialog--section-title">{{ data.dishName }}</h2>
+        
+        <h3 class="dialog--section-head">Nutritional value</h3>
+        <ul>
+          <li *ngFor="let ingredient of data.nutritionalValue;">{{ ingredient }}</li>
+        </ul>
+        <h3 class="dialog--section-head">Calorie content</h3>
+        <ul>
+          <li>{{ data.calorieContent }}</li>
+        </ul>
+      
+      </div>
+
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Comments">
+    <ng-template matTabContent>
+
+      <div class="dialog--section">
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
+        
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
+
+      </div>
+
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

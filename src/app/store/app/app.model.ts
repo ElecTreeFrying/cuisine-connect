@@ -1,3 +1,5 @@
+import { UserInfo } from '@angular/fire/auth';
+
 export interface AppStateModel {
   language: Language;
   admin: boolean;
@@ -6,6 +8,7 @@ export interface AppStateModel {
   user: any;
   recipes: Recipe[] | null;
   cuisineCategories: CuisineCategory[] | null;
+  userPermissions: UserPermissions[] | null;
 }
 
 export type Language = 'en' | 'ru' | 'lv';
@@ -13,7 +16,10 @@ export type Language = 'en' | 'ru' | 'lv';
 export interface UserPermissions {
   uid: string;
   admin: boolean;
-  requestTimestamp: string;
+  requestTimestamp: number | null;
+  creationTime: string;
+  lastSignInTime: string;
+  user: UserInfo;
 }
 
 export interface Recipe {

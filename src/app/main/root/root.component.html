@@ -9,7 +9,7 @@
         <span class="toolbar--app-name" routerLink="/">Cuisine Connect</span>
       </ng-template>
   
-      <ng-container *ngIf="service.authState.currentUser$| async as currentUser">
+      <ng-container *ngIf="service.authState.currentUser$ | async as currentUser">
 
         <ng-container *ngIf="service.adminPortal$ | async;else defaultAppNavigations">
           <button mat-button routerLink="/admin">Dashboard</button>
@@ -60,7 +60,7 @@
               <mat-icon>person</mat-icon>
               <span>Manage profile</span>
             </button>
-            <button mat-menu-item routerLink="/admin">
+            <button mat-menu-item routerLink="/admin" *ngIf="service.admin$ | async">
               <mat-icon>admin_panel_settings</mat-icon>
               <span>Switch to Admin Portal</span>
             </button>

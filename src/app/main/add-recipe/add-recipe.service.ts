@@ -10,6 +10,7 @@ export class AddRecipeService {
   form: FormGroup;
   cookingSteps$$ = new BehaviorSubject<string[]>([]);
   ingredients$$ = new BehaviorSubject<string[]>([]);
+  nutritionalValue$$ = new BehaviorSubject<string[]>([]);
 
   constructor(
     @Inject(FormBuilder) fb: FormBuilder
@@ -20,6 +21,8 @@ export class AddRecipeService {
       cookingTime: [ '', [ Validators.required, Validators.pattern(cookingTime) ] ],
       cookingSteps: [ '', [ Validators.minLength(7) ] ],
       ingredients: [ '' , [ Validators.minLength(7) ]],
+      calorieContent: [ '', [ Validators.required ] ],
+      nutritionalValue: [ '' , [ Validators.minLength(7) ]],
     });
   }
 
@@ -31,19 +34,26 @@ export class AddRecipeService {
     return this.ingredients$$.value.length > 0;
   }
 
+  get hasNutritionalValue(): boolean  {
+    return this.nutritionalValue$$.value.length > 0;
+  }
+
   get formValue(): any {
     const value = { ...this.form.value };
     value.photo = value.imageUrl;
     delete value.imageUrl;
     delete value.cookingSteps;
     delete value.ingredients;
+    delete value.nutritionalValue;
     value.cookingSteps = this.cookingSteps$$.value;
     value.date = new Date().toISOString();
     value.ingredients = this.ingredients$$.value;
+    value.nutritionalValue = this.nutritionalValue$$.value;
     if (
       this.form.invalid 
       || !value.cookingSteps.length 
       || !value.ingredients.length
+      || !value.nutritionalValue.length
     ) return null;
     return value;
   }
@@ -62,6 +72,14 @@ export class AddRecipeService {
     this.ingredients$$.value.push(value);
     this.ingredients$$.next(this.ingredients$$.value);
     this.form.patchValue({ ingredients: '' });
+  }
+  
+  addNutritionalValue(): any {
+    const value = this.form.value.nutritionalValue;
+    if (value.length < 7) return;
+    this.nutritionalValue$$.value.push(value);
+    this.nutritionalValue$$.next(this.nutritionalValue$$.value);
+    this.form.patchValue({ nutritionalValue: '' });
   }
 
 }

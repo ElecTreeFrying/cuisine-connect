@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth, User, UserMetadata, authState } from '@angular/fire/auth';
+import { Auth, User, authState } from '@angular/fire/auth';
 import { Store } from '@ngxs/store';
 
 import { AppAction, AppState } from 'src/app/store';
-import { Observable, startWith } from 'rxjs';
+import { Observable } from 'rxjs';
 
-type CurrentUser = User & UserMetadata;
+export type CurrentUser = User & {
+  createdAt: string;
+  lastLoginAt: string;
+};
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +21,10 @@ export class AuthStateService {
     private store: Store,
     router: Router
   ) {
-    authState(auth).subscribe((response: CurrentUser | null) => {
+    authState(auth).subscribe((response: User | null) => {
       console.log('\n\n\n\n@@@ (auth-state)', response, '\n\n\n\n\n');
 
-      store.selectSnapshot(AppState.authenticated)
-      && store.dispatch(new AppAction.SetFirebaseUser(response));
+      response && store.dispatch(new AppAction.SetFirebaseUser(response));
 
       if (!response && store.selectSnapshot(AppState.authenticated)) {
         store.dispatch(new AppAction.UpdateAuthenticationState({
@@ -31,6 +33,10 @@ export class AuthStateService {
         router.navigateByUrl('/auth')
       }
     });
+  }
+
+  get $(): Observable<CurrentUser | null> {
+    return authState(this.auth) as any;
   }
 
   get currentUser(): CurrentUser {

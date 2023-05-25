@@ -1,0 +1,47 @@
+.host--section-title {
+  font-size: 32px;
+}
+
+.host--section-description {
+  font-size: 16px;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 64px;
+
+  .users--pending {
+    flex: 0 1 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.mat-mdc-card {
+  width: 400px;
+  
+  .mat-mdc-card-content {
+    display: flex;
+    gap: 24px;
+    .card--image {
+      $size: 50px;
+      width: $size;
+      height: $size;
+      border-radius: calc($size/2);
+    }
+    .card--data .card--data-label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+    .card--data p {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .mat-mdc-raised-button {
+      margin-top: 4px;
+    }
+  }
+}

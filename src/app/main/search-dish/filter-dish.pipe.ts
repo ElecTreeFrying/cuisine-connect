@@ -9,12 +9,15 @@ import { Recipe } from '../common';
 })
 export class FilterDishPipe implements PipeTransform {
 
-  transform(recipes$: Observable<Recipe[] | null>, dishName: string): Observable<Recipe[]> {
+  transform(recipes$: Observable<Recipe[] | null>, search: string): Observable<Recipe[]> {
     return recipes$.pipe(
       map((recipes: Recipe[] | null) => {
         if (!recipes) return [] as Recipe[];
-        if (!dishName) return recipes;
-        return recipes.filter(e => e.dishName.toLowerCase().includes(dishName.toLowerCase()));
+        if (!search) return recipes;
+        return recipes.filter((recipe: Recipe) => {
+          return recipe.dishName.toLowerCase().includes(search.toLowerCase())
+          || recipe.ingredients.map(e => e.toLowerCase()).includes(search.toLowerCase())
+        });
       })
     )
   }

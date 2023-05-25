@@ -67,6 +67,28 @@
     <ng-template #noIngredientsEntered>
       <ul><li>Add an ingredient</li></ul>
     </ng-template>
+  
+    <mat-form-field color="primary" appearance="outline">
+      <mat-label>Nutritional value</mat-label>
+      <input matInput type="text" formControlName="nutritionalValue">
+      <button matSuffix mat-raised-button color="accent" (click)="service.addNutritionalValue()" type="button">
+        <mat-icon>add</mat-icon>
+        <span>Add</span>
+      </button>
+    </mat-form-field>
+
+    <ng-container *ngIf="service.hasNutritionalValue;else noNutritionalValueEntered">
+      <ol><li *ngFor="let item of service.nutritionalValue$$ | async;">{{ item }}</li></ol>
+    </ng-container>
+    <ng-template #noNutritionalValueEntered>
+      <ul><li>Add a nutritional value</li></ul>
+    </ng-template>
+
+    <mat-form-field color="primary" appearance="outline">
+      <mat-label>Calorie content</mat-label>
+      <input matInput type="text" formControlName="calorieContent">
+      <mat-hint>Ex. "Approximately 400-500 calories."</mat-hint>
+    </mat-form-field>
 
     <button mat-raised-button type="submit">Add recipe</button>
 

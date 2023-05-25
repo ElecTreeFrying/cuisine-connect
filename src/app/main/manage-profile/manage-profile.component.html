@@ -34,7 +34,7 @@
     </ng-container>
     <ng-template #nonAdmin>
       <p class="host--content-section-description">By selecting the button below, you can request access to the admin portal. Please wait for an administrator to accept your request in order to be granted access.</p>
-      <button mat-raised-button color="primary">Request admin access</button>
+      <button mat-raised-button color="primary" [disabled]="service.requestSent" (click)="service.requestAdminAccess()">Request admin access</button>
     </ng-template>
 
   </div>

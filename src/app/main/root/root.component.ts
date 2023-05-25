@@ -17,7 +17,8 @@ export class RootComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.initializeLanguage();
-    this.service.initializeUserPermissions();
+    this.service.setUserPermissionDefaults();
+    this.service.userPermissionObserver();
   }
   
 }

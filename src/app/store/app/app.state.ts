@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, StateToken, createSelector } from '@ngxs/store';
 import { map, tap } from 'rxjs';
 
-import { AppStateModel, AppAction, Recipe, CuisineCategory, Language } from '.';
+import { AppStateModel, AppAction, Recipe, CuisineCategory, Language, UserPermissions } from '.';
 import { FirestoreService } from 'src/app/main';
 
 export const defaults: AppStateModel = {
@@ -12,7 +12,8 @@ export const defaults: AppStateModel = {
   admin_portal: false,
   user: null,
   recipes: null,
-  cuisineCategories: null
+  cuisineCategories: null,
+  userPermissions: null,
 };
 
 export const APP_STATE_TOKEN = new StateToken<AppStateModel>('app');
@@ -68,6 +69,12 @@ export class AppState {
     return state.cuisineCategories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
+  @Selector()
+  static userPermissions(state: AppStateModel): UserPermissions[] | null {
+    if (!state.userPermissions) return null;
+    return state.userPermissions;
+  }
+
   constructor(
     private firestore: FirestoreService
   ) { }
@@ -86,7 +93,8 @@ export class AppState {
       admin_portal: action.state.authenticated ? ctx.getState().admin_portal : false,
       user: action.state.authenticated ? ctx.getState().user : null,
       recipes: action.state.authenticated ? ctx.getState().recipes : null,
-      cuisineCategories: action.state.authenticated ? ctx.getState().cuisineCategories : null
+      cuisineCategories: action.state.authenticated ? ctx.getState().cuisineCategories : null,
+      userPermissions: action.state.authenticated ? ctx.getState().userPermissions : null,
     });
   }
   
@@ -118,6 +126,18 @@ export class AppState {
       return this.firestore.cuisineCategories$.pipe(
         map(query => query.map(value => ({ ...value.data(), uid: value.id }))),
         tap(cuisineCategories => ctx.patchState({ cuisineCategories }))
+      );
+    } else {
+      return ctx.patchState({ cuisineCategories: null });
+    }
+  }
+  
+  @Action(AppAction.UserPermissionsControl)
+  userPermissionsControl(ctx: StateContext<AppStateModel>, { control }: AppAction.UserPermissionsControl) {
+    if (control === 'get') {
+      return this.firestore.userPermission$.pipe(
+        map(query => query.map(value => value.data())),
+        tap(userPermissions => ctx.patchState({ userPermissions }))
       );
     } else {
       return ctx.patchState({ cuisineCategories: null });

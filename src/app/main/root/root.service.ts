@@ -3,16 +3,17 @@ import { Router } from '@angular/router';
 import { Auth, signOut } from '@angular/fire/auth';
 import { Select, Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, filter, switchMap, tap } from 'rxjs';
+import { Observable, filter, switchMap, take, tap } from 'rxjs';
 
 import { AppAction, AppState, Language } from '../../store';
-import { AuthStateService, FirestoreService } from '../common';
+import { AuthStateService, FirestoreService, CurrentUser } from '../common';
 
 @Injectable()
 export class RootService {
 
   @Select(AppState.language) language$!: Observable<Language>;
   @Select(AppState.authenticated) authenticated$!: Observable<boolean>;
+  @Select(AppState.admin) admin$!: Observable<boolean>;
   @Select(AppState.adminPortal) adminPortal$!: Observable<boolean>;
 
   constructor(
@@ -23,10 +24,6 @@ export class RootService {
     private firestore: FirestoreService,
     private translate: TranslateService
   ) { }
-
-  initializeUserPermissions(): void {
-    this.userPermissionHandler();
-  }
 
   initializeLanguage(): void {
     this.translate.addLangs([ 'en', 'ru', 'lv' ]);
@@ -43,12 +40,31 @@ export class RootService {
     this.store.dispatch(new AppAction.UpdateLanguageState(language));
   }
 
-  private userPermissionHandler(): void {
+  setUserPermissionDefaults(): void {
+    this.authState.$.pipe(
+      filter(Boolean),
+      tap(currentUser => this.updateUserPermission(currentUser)),
+    ).subscribe();
+  }
+
+  userPermissionObserver(): void {
     this.authState.currentUser$.pipe(
       filter(Boolean),
-      switchMap((user) => this.firestore.getUserPermission(user.uid)),
-      tap((permission) => this.dispatch({ authenticated: true, admin: permission.admin })),
+      switchMap(currentUser => this.firestore.getUserPermission(currentUser)),
+      filter(permission => {
+        return this.store.selectSnapshot(AppState.authenticated)
+        && (permission.admin !== this.store.selectSnapshot(AppState.admin))
+      }),
+      tap(permission => this.dispatch({ authenticated: true, admin: permission.admin })),
     ).subscribe();
+  }
+
+  updateUserPermission(currentUser: CurrentUser): void {
+    this.firestore.updateUserPermissionByUid(currentUser.uid, {
+      user: currentUser.providerData[0],
+      creationTime: currentUser.metadata.creationTime,
+      lastSignInTime: currentUser.metadata.lastSignInTime
+    })
   }
 
   logout(): void {

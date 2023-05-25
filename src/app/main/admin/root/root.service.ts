@@ -17,7 +17,7 @@ export class RootService {
   adminStateListener(): void {
     this.authState.currentUser$.pipe(
       filter(Boolean),
-      switchMap((user) => this.firestore.getUserPermission(user.uid)),
+      switchMap(currentUser => this.firestore.getUserPermission(currentUser)),
       tap((permission) => (permission.admin || this.router.navigateByUrl('/')))
     ).subscribe();
   }

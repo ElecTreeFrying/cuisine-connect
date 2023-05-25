@@ -97,6 +97,7 @@
     flex: 0 1 calc(1200px + 12px*2);
   }
   .root--content-outlet {
-    min-height: calc(100dvh - 64px - 32px - 56px);
+    min-height: calc(100dvh - 64px - 32px - 56px - 32px);
+    padding-bottom: 32px;
   }
 }

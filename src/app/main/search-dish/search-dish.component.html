@@ -5,6 +5,7 @@
   <mat-form-field color="accent" appearance="outline" color="primary" *ngIf="service.recipes$ | filterDish: service.dishNameSearch | async;">
     <mat-label>Search</mat-label>
     <input matInput type="text" [(ngModel)]="service.dishNameSearch">
+    <mat-hint>Recipe name or ingredient</mat-hint>
   </mat-form-field>
 </div>
 
