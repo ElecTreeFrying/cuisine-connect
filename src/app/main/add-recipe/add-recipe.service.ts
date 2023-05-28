@@ -57,29 +57,31 @@ export class AddRecipeService {
     ) return null;
     return value;
   }
-
-  addCookingStep(): any {
+  
+  updateCookingStep(index?: number): void {
     const value = this.form.value.cookingSteps;
-    if (value.length < 7) return;
-    this.cookingSteps$$.value.push(value);
-    this.cookingSteps$$.next(this.cookingSteps$$.value);
-    this.form.patchValue({ cookingSteps: '' });
+    this.updateArrayField(value, this.cookingSteps$$, 'cookingSteps', index);
   }
   
-  addIngredients(): any {
+  updateIngredients(index?: number): void {
     const value = this.form.value.ingredients;
-    if (value.length < 7) return;
-    this.ingredients$$.value.push(value);
-    this.ingredients$$.next(this.ingredients$$.value);
-    this.form.patchValue({ ingredients: '' });
+    this.updateArrayField(value, this.ingredients$$, 'ingredients', index);
   }
   
-  addNutritionalValue(): any {
+  updateNutritionalValue(index?: number): void {
     const value = this.form.value.nutritionalValue;
-    if (value.length < 7) return;
-    this.nutritionalValue$$.value.push(value);
-    this.nutritionalValue$$.next(this.nutritionalValue$$.value);
-    this.form.patchValue({ nutritionalValue: '' });
+    this.updateArrayField(value, this.nutritionalValue$$, 'nutritionalValue', index);
+  }
+
+  private updateArrayField(value: string, field: BehaviorSubject<string[]>, formField: string, index?: number): void {
+    if (index === undefined) {
+      if (value.length < 7) return;
+      field.value.push(value);
+    } else {
+      field.value.splice(index, 1);
+    }
+    field.next(field.value);
+    this.form.patchValue({ [formField]: '' });
   }
 
 }

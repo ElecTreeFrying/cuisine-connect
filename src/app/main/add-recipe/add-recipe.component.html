@@ -38,15 +38,18 @@
   <div>
     <mat-form-field color="primary" appearance="outline">
       <mat-label>Cooking steps</mat-label>
-      <input matInput type="text" formControlName="cookingSteps">
-      <button matSuffix mat-raised-button color="accent" (click)="service.addCookingStep()" type="button">
-        <mat-icon>add</mat-icon>
+      <input matInput type="text" formControlName="cookingSteps" (keydown.enter)="service.updateCookingStep()">
+      <button matSuffix mat-button color="accent" (click)="service.updateCookingStep()" type="button">
         <span>Add</span>
       </button>
     </mat-form-field>
 
     <ng-container *ngIf="service.hasCookingSteps;else noCookingStepsEntered">
-      <ol><li *ngFor="let item of service.cookingSteps$$ | async;">{{ item }}</li></ol>
+      <ol>
+        <li *ngFor="let item of service.cookingSteps$$ | async;let i = index">
+          {{ item }}<mat-icon (click)="service.updateCookingStep(i)">delete</mat-icon>
+        </li>
+      </ol>
     </ng-container>
     <ng-template #noCookingStepsEntered>
       <ol><li>Add a cooking step</li></ol>
@@ -54,15 +57,16 @@
   
     <mat-form-field color="primary" appearance="outline">
       <mat-label>Ingredients</mat-label>
-      <input matInput type="text" formControlName="ingredients">
-      <button matSuffix mat-raised-button color="accent" (click)="service.addIngredients()" type="button">
-        <mat-icon>add</mat-icon>
+      <input matInput type="text" formControlName="ingredients" (keydown.enter)="service.updateIngredients()">
+      <button matSuffix mat-button color="accent" (click)="service.updateIngredients()" type="button">
         <span>Add</span>
       </button>
     </mat-form-field>
 
     <ng-container *ngIf="service.hasIngredients;else noIngredientsEntered">
-      <ol><li *ngFor="let item of service.ingredients$$ | async;">{{ item }}</li></ol>
+      <ol><li *ngFor="let item of service.ingredients$$ | async;let i = index">
+          {{ item }}<mat-icon (click)="service.updateIngredients(i)">delete</mat-icon>
+      </li></ol>
     </ng-container>
     <ng-template #noIngredientsEntered>
       <ul><li>Add an ingredient</li></ul>
@@ -70,15 +74,16 @@
   
     <mat-form-field color="primary" appearance="outline">
       <mat-label>Nutritional value</mat-label>
-      <input matInput type="text" formControlName="nutritionalValue">
-      <button matSuffix mat-raised-button color="accent" (click)="service.addNutritionalValue()" type="button">
-        <mat-icon>add</mat-icon>
+      <input matInput type="text" formControlName="nutritionalValue" (keydown.enter)="service.updateNutritionalValue()">
+      <button matSuffix mat-button color="accent" (click)="service.updateNutritionalValue()" type="button">
         <span>Add</span>
       </button>
     </mat-form-field>
 
     <ng-container *ngIf="service.hasNutritionalValue;else noNutritionalValueEntered">
-      <ol><li *ngFor="let item of service.nutritionalValue$$ | async;">{{ item }}</li></ol>
+      <ol><li *ngFor="let item of service.nutritionalValue$$ | async;let i = index">
+          {{ item }}<mat-icon (click)="service.updateNutritionalValue(i)">delete</mat-icon>
+      </li></ol>
     </ng-container>
     <ng-template #noNutritionalValueEntered>
       <ul><li>Add a nutritional value</li></ul>
