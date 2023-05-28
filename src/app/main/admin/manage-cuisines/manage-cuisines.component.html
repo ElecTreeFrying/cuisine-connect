@@ -9,6 +9,14 @@
 <div class="cuisines">
 
   <ng-container *ngIf="service.cuisineCategories$ | async;else loadingCuisineCategories">
+    <mat-card routerLink="/admin/manage-recipes/add-recipe">
+      <mat-card-content matRipple>
+        <div>
+          <mat-icon>add</mat-icon>
+          <p>Add cuisine category</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
     <mat-card *ngFor="let cuisineCategory of service.cuisineCategories$ | async;">
       <mat-card-header>
         <mat-card-title>{{ cuisineCategory.title }}</mat-card-title>

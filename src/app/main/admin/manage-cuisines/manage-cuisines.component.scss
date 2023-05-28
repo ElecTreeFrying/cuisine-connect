@@ -39,4 +39,27 @@
   .mat-mdc-card-actions {
     flex-direction: row-reverse;
   }
+  &:first-child
+  .mat-mdc-card-content {
+    height: 100%;
+    cursor: pointer;
+    user-select: none;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: inherit;
+    }
+    .mat-icon {
+      $size: 32px;
+      width: $size;
+      height: $size;
+      font-size: $size;
+    }
+    p {
+      font-size: 28px;
+      line-height: 32px;
+    }
+  }
 }
