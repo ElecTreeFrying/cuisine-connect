@@ -53,7 +53,9 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
       await this.recipesServices.addRecipe(formValue);
       this.snackbar.dismiss();
       this.service.form.reset();
-      this.router.navigateByUrl('/search-dish');
+      this.store.selectSnapshot(AppState.admin)
+        ? this.router.navigateByUrl('/admin/manage-recipes')
+        : this.router.navigateByUrl('/search-dish');
       this.store.dispatch(new AppAction.RecipesControl('reset'));
     } catch (error) {
       console.error(error);

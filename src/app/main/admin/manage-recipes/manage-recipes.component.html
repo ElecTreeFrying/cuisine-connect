@@ -14,6 +14,14 @@
 
 <div class="dishes">
   <ng-container *ngIf="service.recipes$ | async;else loadingDishes">
+    <mat-card routerLink="/admin/manage-recipes/add-recipe">
+      <mat-card-content matRipple>
+        <div>
+          <mat-icon>add</mat-icon>
+          <p>Add recipe</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
     <mat-card *ngFor="let recipe of service.recipes$ | filterDish: service.dishNameSearch | async;">
       <mat-card-header>
         <mat-card-title>{{ recipe.dishName }}</mat-card-title>
