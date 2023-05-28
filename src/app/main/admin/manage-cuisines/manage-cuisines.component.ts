@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { imports, viewProviders } from './manage-cuisines.config';
+import { ManageCuisinesService } from './manage-cuisines.service';
 
 @Component({
   selector: 'app-manage-cuisines',
@@ -8,6 +9,14 @@ import { imports, viewProviders } from './manage-cuisines.config';
   styleUrls: ['./manage-cuisines.component.scss'],
   standalone: true, imports, viewProviders
 })
-export class ManageCuisinesComponent {
+export class ManageCuisinesComponent implements OnInit {
+  
+  constructor(
+    public service: ManageCuisinesService
+  ) { }
+
+  ngOnInit(): void {
+    this.service.getCuisineCategories();
+  }
 
 }

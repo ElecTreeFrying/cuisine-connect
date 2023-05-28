@@ -1,9 +1,9 @@
 import { NgFor, NgIf, AsyncPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-
-import { HomepageService } from './homepage.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { HomepageService } from './homepage.service';
 
 export const imports = [
   NgIf,

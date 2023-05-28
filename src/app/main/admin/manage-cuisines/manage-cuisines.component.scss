@@ -1,0 +1,42 @@
+.host--section-title {
+  font-size: 32px;
+}
+
+.host--section-description {
+  font-size: 16px;
+}
+
+.cuisines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 64px;
+
+  .cuisines--pending {
+    flex: 0 1 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.mat-mdc-card {
+  width: 400px;
+  .mat-mdc-card-header {
+    padding: 8px 16px;
+  }
+  .mat-mdc-card-image {
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+  .mat-mdc-card-content p {
+    margin-top: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mat-mdc-card-actions {
+    flex-direction: row-reverse;
+  }
+}

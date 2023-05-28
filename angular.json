@@ -52,6 +52,10 @@
                 "src/styles"
               ]
             },
+            "allowedCommonJsDependencies": [
+              "moment-timezone",
+              "lodash"
+            ],
             "scripts": []
           },
           "configurations": {
