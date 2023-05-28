@@ -13,7 +13,7 @@ export const ADMIN_ROUTES: Routes = [
       },  
       {
         path: 'manage-cuisines',
-        loadComponent: () => import('./manage-cuisines/manage-cuisines.component').then(m => m.ManageCuisinesComponent),
+        loadChildren: () => import('./manage-cuisines/manage-recipes.routes').then(m => m.MANAGE_CUISINE_CATEGORIES_ROUTES),
         title: 'Manage Cuisine Categories | Cuisine Connect'
       },
       {
