@@ -15,7 +15,7 @@ import { RecipesService, SnackbarService } from '../common';
 })
 export class AddRecipeComponent implements OnInit, OnDestroy {
 
-  update!: boolean
+  update!: boolean;
 
   constructor(
     public router: Router,
@@ -33,10 +33,6 @@ export class AddRecipeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.store.dispatch(new AppAction.SelectedRecipeControl('reset'));
-  }
-
-  getFormField(value: string): any {
-    return this.service.form.get(value);
   }
 
   get value(): any {

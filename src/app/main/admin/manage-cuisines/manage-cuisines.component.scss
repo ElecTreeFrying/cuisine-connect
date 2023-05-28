@@ -35,6 +35,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-height: 120px;
   }
   .mat-mdc-card-actions {
     flex-direction: row-reverse;

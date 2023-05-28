@@ -9,6 +9,7 @@ export interface AppStateModel {
   recipes: Recipe[] | null;
   selectedRecipe: Recipe | null;
   cuisineCategories: CuisineCategory[] | null;
+  selectedCuisineCategory: CuisineCategory | null;
   userPermissions: UserPermissions[] | null;
 }
 

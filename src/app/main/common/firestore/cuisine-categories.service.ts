@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CollectionReference, DocumentReference, QueryDocumentSnapshot, addDoc, collection, collectionSnapshots, getFirestore } from '@angular/fire/firestore';
+import { CollectionReference, DocumentReference, QueryDocumentSnapshot, addDoc, collection, collectionSnapshots, deleteDoc, doc, getFirestore, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import { CuisineCategory } from 'src/app/store';
@@ -13,12 +13,26 @@ export class CuisineCategoriesService {
     return collection(getFirestore(), 'cuisine-categories') as CollectionReference<CuisineCategory>;
   }
 
+  get cuisineCategories$(): Observable<QueryDocumentSnapshot<CuisineCategory>[]> {
+    return collectionSnapshots<CuisineCategory>(this.cuisineCategoriesCollectionRef);
+  }
+
   addCuisineCategory(data: CuisineCategory): Promise<DocumentReference<CuisineCategory>> {
     return addDoc<CuisineCategory>(this.cuisineCategoriesCollectionRef, data);
   }
 
-  get cuisineCategories$(): Observable<QueryDocumentSnapshot<CuisineCategory>[]> {
-    return collectionSnapshots<CuisineCategory>(this.cuisineCategoriesCollectionRef);
+  async updateCuisineCategory(data: CuisineCategory): Promise<void> {
+    if (!data?.uid) {
+      throw Error('No uid');
+    }
+    const ref = doc(this.cuisineCategoriesCollectionRef, data.uid);
+    delete data.uid;
+    await updateDoc(ref, data);
+  }
+
+  async removeCuisineCategory(uid: string): Promise<void> {
+    const ref = doc(this.cuisineCategoriesCollectionRef, uid);
+    await deleteDoc(ref);
   }
 
 }

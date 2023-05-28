@@ -12,9 +12,10 @@ export const defaults: AppStateModel = {
   admin_portal: false,
   user: null,
   recipes: null,
-  cuisineCategories: null,
-  userPermissions: null,
   selectedRecipe: null,
+  cuisineCategories: null,
+  selectedCuisineCategory: null,
+  userPermissions: null
 };
 
 export const APP_STATE_TOKEN = new StateToken<AppStateModel>('app');
@@ -73,6 +74,11 @@ export class AppState {
   static cuisineCategories(state: AppStateModel): CuisineCategory[] | null {
     if (!state.cuisineCategories) return null;
     return state.cuisineCategories.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
+
+  @Selector()
+  static selectedCuisineCategory(state: AppStateModel): CuisineCategory | null {
+    return state.selectedCuisineCategory;
   }
 
   @Selector()
@@ -143,6 +149,11 @@ export class AppState {
     } else {
       return ctx.patchState({ cuisineCategories: null });
     }
+  }
+  
+  @Action(AppAction.SelectedCuisineCategoryControl)
+  selectedCuisineCategoryControl(ctx: StateContext<AppStateModel>, { control, selectedCuisineCategory }: AppAction.SelectedCuisineCategoryControl) {
+    ctx.patchState({ selectedCuisineCategory: control === 'set' ? selectedCuisineCategory : null });
   }
   
   @Action(AppAction.UserPermissionsControl)

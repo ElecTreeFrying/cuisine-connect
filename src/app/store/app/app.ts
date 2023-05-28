@@ -1,4 +1,4 @@
-import { Language, Recipe } from "./app.model";
+import { CuisineCategory, Language, Recipe } from "./app.model";
 
 type CollectionControl = 'get' | 'set' | 'reset';
 
@@ -34,6 +34,11 @@ export class SelectedRecipeControl {
 export class CuisineCategoryControl {
   static readonly type = '[App State] CuisineCategoryControl';
   constructor(public control: CollectionControl) { }
+}
+
+export class SelectedCuisineCategoryControl {
+  static readonly type = '[App State] CuisineCategoryControl';
+  constructor(public control: CollectionControl, public selectedCuisineCategory?: CuisineCategory) { }
 }
 
 export class UserPermissionsControl {

@@ -1,4 +1,5 @@
 import { NgFor, NgIf, AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -11,6 +12,7 @@ export const imports = [
   NgIf,
   NgFor,
   AsyncPipe,
+  RouterLink,
   MatCardModule,
   MatButtonModule,
   MatProgressSpinnerModule,
