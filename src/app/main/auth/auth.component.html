@@ -5,52 +5,52 @@
 
     <ng-container *ngIf="authState;else loginForm">
 
-      <p class="auth--greetings">Create Account</p>
+      <p class="auth--greetings">{{ 'auth.createAccount' | translate }}</p>
 
       <form (ngSubmit)="service.register()" [formGroup]="service.registerForm">
         <mat-form-field appearance="outline">
-          <mat-label>Full name</mat-label>
+          <mat-label>{{ 'auth.fullname' | translate }}</mat-label>
           <input matInput type="text" placeholder="Enter your full name" formControlName="fullname">
         </mat-form-field>
   
         <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
+          <mat-label>{{ 'auth.email' | translate }}</mat-label>
           <input matInput type="email" autocomplete="username" placeholder="Enter your email address" formControlName="email">
         </mat-form-field>
     
         <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label>{{ 'auth.password' | translate }}</mat-label>
           <input matInput type="password" autocomplete="current-password" placeholder="Enter your password" formControlName="password">
         </mat-form-field>
     
-        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button color="primary" type="submit">{{ 'auth.submitButton' | translate }}</button>
       </form>
   
       <p class="auth--switch" (click)="updateState(false)">
-        Have an account already? <span class="auth--switch-action">Log in</span>
+        {{ 'auth.haveAnAccountAlready' | translate }} <span class="auth--switch-action">{{ 'auth.loginInfoMessage' | translate }}</span>
       </p>
 
     </ng-container>
     <ng-template #loginForm>
 
-      <p class="auth--greetings">Welcome back!</p>
+      <p class="auth--greetings">{{ 'auth.welcomeBack' | translate }}</p>
 
       <form (ngSubmit)="service.login()" [formGroup]="service.loginForm">
         <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
+          <mat-label>{{ 'auth.email' | translate }}</mat-label>
           <input matInput type="email" autocomplete="username" placeholder="Enter your email address" formControlName="email">
         </mat-form-field>
     
         <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label>{{ 'auth.password' | translate }}</mat-label>
           <input matInput type="password" autocomplete="current-password" placeholder="Enter your password" formControlName="password">
         </mat-form-field>
     
-        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button mat-raised-button color="primary" type="submit">{{ 'auth.loginButton' | translate }}</button>
       </form>
   
       <p class="auth--switch" (click)="updateState(true)">
-        New to Cuisine Connect? <span class="auth--switch-action">Sign up</span>
+        {{ 'auth.newToCuisineConnect' | translate }} <span class="auth--switch-action">{{ 'auth.signUpInfoMessage' | translate }}</span>
       </p>
 
     </ng-template>

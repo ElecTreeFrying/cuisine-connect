@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { FilterDishPipe } from './filter-dish.pipe';
 
@@ -23,6 +24,7 @@ export const imports = [
   MatFormFieldModule,
   MatInputModule,
   MatProgressSpinnerModule,
+  TranslateModule,
   FilterDishPipe
 ];
 

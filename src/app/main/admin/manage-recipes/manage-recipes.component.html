@@ -1,13 +1,13 @@
 <br>
 
-<h2 class="host--section-title">Manage Recipes</h2>
+<h2 class="host--section-title">{{ 'adminPortal.manageRecipesTitle' | translate }}</h2>
 
-<p class="host--section-description">Add or remove recipes, update descriptions, and images.</p>
+<p class="host--section-description">{{ 'adminPortal.manageRecipesDescription' | translate }}</p>
 
 <mat-form-field color="accent" appearance="outline" color="primary" *ngIf="service.recipes$ | filterDish: service.dishNameSearch | async;">
-  <mat-label>Search</mat-label>
+  <mat-label>{{ 'adminPortal.searchInputPlaceholder' | translate }}</mat-label>
   <input matInput type="text" [(ngModel)]="service.dishNameSearch">
-  <mat-hint>Recipe name or ingredient</mat-hint>
+  <mat-hint>{{ 'adminPortal.searchInputHint' | translate }}</mat-hint>
 </mat-form-field>
 
 <br><br>
@@ -18,7 +18,7 @@
       <mat-card-content matRipple>
         <div>
           <mat-icon>add</mat-icon>
-          <p>Add recipe</p>
+          <p>{{ 'adminPortal.addRecipeButtonText' | translate }}</p>
         </div>
       </mat-card-content>
     </mat-card>
@@ -29,8 +29,8 @@
       </mat-card-header>
       <img mat-card-image [src]="recipe.photo" [alt]="recipe.dishName">
       <mat-card-actions>
-        <button mat-button (click)="removeRecipe(recipe)">Delete</button>
-        <button mat-button (click)="service.updateRecipe(recipe)">Update</button>
+        <button mat-button (click)="removeRecipe(recipe)">{{ 'adminPortal.deleteButtonText' | translate }}</button>
+        <button mat-button (click)="service.updateRecipe(recipe)">{{ 'adminPortal.updateButtonText' | translate }}</button>
       </mat-card-actions>
     </mat-card>
   </ng-container>

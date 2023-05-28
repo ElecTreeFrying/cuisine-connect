@@ -3,7 +3,7 @@
     <mat-toolbar class="toolbar--content" color="primary">
     
       <ng-container *ngIf="service.adminPortal$ | async;else defaultAppTitle">
-        <span class="toolbar--app-name" routerLink="/admin">Admin Portal</span>
+        <span class="toolbar--app-name" routerLink="/admin">{{ 'toolbar.admin.title' | translate }}</span>
       </ng-container>
       <ng-template #defaultAppTitle>
         <span class="toolbar--app-name" routerLink="/">Cuisine Connect</span>
@@ -12,15 +12,15 @@
       <ng-container *ngIf="service.authState.currentUser$ | async as currentUser">
 
         <ng-container *ngIf="service.adminPortal$ | async;else defaultAppNavigations">
-          <button mat-button routerLink="/admin">Dashboard</button>
-          <button mat-button routerLink="/admin/manage-cuisines">Manage cuisines</button>
-          <button mat-button routerLink="/admin/manage-recipes">Manage recipes</button>
-          <button mat-button routerLink="/admin/manage-users">Manage users</button>
+          <button mat-button routerLink="/admin">{{ 'toolbar.admin.option1' | translate }}</button>
+          <button mat-button routerLink="/admin/manage-cuisines">{{ 'toolbar.admin.option2' | translate }}</button>
+          <button mat-button routerLink="/admin/manage-recipes">{{ 'toolbar.admin.option3' | translate }}</button>
+          <button mat-button routerLink="/admin/manage-users">{{ 'toolbar.admin.option4' | translate }}</button>
         </ng-container>
         <ng-template #defaultAppNavigations>
-          <button mat-button routerLink="/">Cuisine categories</button>
-          <button mat-button routerLink="/search-dish">Search a dish</button>
-          <button mat-button routerLink="/add-recipe">Add a recipe</button>
+          <button mat-button routerLink="/">{{ 'toolbar.option1' | translate }}</button>
+          <button mat-button routerLink="/search-dish">{{ 'toolbar.option2' | translate }}</button>
+          <button mat-button routerLink="/add-recipe">{{ 'toolbar.option3' | translate }}</button>
         </ng-template>
 
   
@@ -48,25 +48,25 @@
           <ng-container *ngIf="service.adminPortal$ | async;else defaultMenuSwitch">
             <button mat-menu-item routerLink="/">
               <mat-icon>autorenew</mat-icon>
-              <span>Switch to Cuisine Connect</span>
+              <span>{{ 'toolbar.admin.menuOption1' | translate }}</span>
             </button>
             <button mat-menu-item (click)="service.logout()">
               <mat-icon>logout</mat-icon>
-              <span>Logout</span>
+              <span>{{ 'toolbar.admin.menuOption2' | translate }}</span>
             </button>
           </ng-container>
           <ng-template #defaultMenuSwitch>
             <button mat-menu-item routerLink="/manage-profile">
               <mat-icon>person</mat-icon>
-              <span>Manage profile</span>
+              <span>{{ 'toolbar.menuOption1' | translate }}</span>
             </button>
             <button mat-menu-item routerLink="/admin" *ngIf="service.admin$ | async">
               <mat-icon>admin_panel_settings</mat-icon>
-              <span>Switch to Admin Portal</span>
+              <span>{{ 'toolbar.menuOption2' | translate }}</span>
             </button>
             <button mat-menu-item (click)="service.logout()">
               <mat-icon>logout</mat-icon>
-              <span>Logout</span>
+              <span>{{ 'toolbar.menuOption3' | translate }}</span>
             </button>
           </ng-template>
         </mat-menu>
@@ -91,11 +91,11 @@
       <router-outlet></router-outlet>
     </div>
     <div class="root--content-footer" *ngIf="service.authenticated$ | async">
-      <p>©2023 <span routerLink="/">Cuisine Connect.</span> All rights reserved.</p>
+      <p>©2023 <span routerLink="/">Cuisine Connect.</span> {{ 'footer.text1' | translate }}</p>
     </div>
   </div>
 </div>
 
 <div class="root--content-footer auth" *ngIf="!(service.authenticated$ | async)">
-  <p>©2023 <span routerLink="/">Cuisine Connect.</span> All rights reserved.</p>
+  <p>©2023 <span routerLink="/">Cuisine Connect.</span> {{ 'footer.text1' | translate }}</p>
 </div>

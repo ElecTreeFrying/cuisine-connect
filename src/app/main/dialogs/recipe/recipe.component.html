@@ -7,22 +7,22 @@
 </div>
 
 <mat-tab-group dynamicHeight>
-  <mat-tab label="Recipe">
+  <mat-tab [label]="'addRecipe.recipeDialogTab1' | translate">
     <ng-template matTabContent>
 
       <div class="dialog--section">
 
         <h2 class="dialog--section-title">{{ data.dishName }}</h2>
         
-        <h3 class="dialog--section-head">Ingredients</h3>
+        <h3 class="dialog--section-head">{{ 'addRecipe.ingredientsInputLabel' | translate }}</h3>
         <ul>
           <li *ngFor="let ingredient of data.ingredients;">{{ ingredient }}</li>
         </ul>
-        <h3 class="dialog--section-head">Steps</h3>
+        <h3 class="dialog--section-head">{{ 'addRecipe.cookingStepsInputLabel' | translate }}</h3>
         <ol>
           <li *ngFor="let cookingStep of data.cookingSteps;">{{ cookingStep }}</li>
         </ol>
-        <h3 class="dialog--section-head">Cooking time</h3>
+        <h3 class="dialog--section-head">{{ 'addRecipe.cookingTimeInputLabel' | translate }}</h3>
         <ul>
           <li>{{ data.cookingTime }}</li>
         </ul>
@@ -31,18 +31,18 @@
 
     </ng-template>
   </mat-tab>
-  <mat-tab label="Details">
+  <mat-tab [label]="'addRecipe.recipeDialogTab2' | translate">
     <ng-template matTabContent>
 
       <div class="dialog--section">
 
         <h2 class="dialog--section-title">{{ data.dishName }}</h2>
         
-        <h3 class="dialog--section-head">Nutritional value</h3>
+        <h3 class="dialog--section-head">{{ 'addRecipe.nutritionalValueInputLabel' | translate }}</h3>
         <ul>
           <li *ngFor="let ingredient of data.nutritionalValue;">{{ ingredient }}</li>
         </ul>
-        <h3 class="dialog--section-head">Calorie content</h3>
+        <h3 class="dialog--section-head">{{ 'addRecipe.calorieContentInputLabel' | translate }}</h3>
         <ul>
           <li>{{ data.calorieContent }}</li>
         </ul>
@@ -51,7 +51,7 @@
 
     </ng-template>
   </mat-tab>
-  <mat-tab label="Comments">
+  <mat-tab [label]="'addRecipe.recipeDialogTab3' | translate">
     <ng-template matTabContent>
 
       <div class="dialog--section">
@@ -70,7 +70,7 @@
   
           </div>
           <mat-form-field appearance="outline">
-            <mat-label>Comment</mat-label>
+            <mat-label>{{ 'addRecipe.commentInputPlaceholder' | translate }}</mat-label>
             <input matInput type="text" [(ngModel)]="comment" placeholder="Write a comment" (keydown.enter)="service.addComment(comment);comment = ''">
             <button matSuffix mat-icon-button (click)="service.addComment(comment);comment = ''">
               <mat-icon>send</mat-icon>

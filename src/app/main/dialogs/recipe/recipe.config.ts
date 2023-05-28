@@ -7,6 +7,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LocalTimePipe } from '../../shared';
 import { OrderByTimestampPipe } from './order-by-timestamp.pipe';
@@ -26,6 +27,7 @@ export const imports = [
   MatProgressSpinnerModule,
   MatFormFieldModule,
   MatInputModule,
+  TranslateModule,
   LocalTimePipe,
   OrderByTimestampPipe
 ];

@@ -1,11 +1,11 @@
 <br>
 
 <div class="page--section-head">
-  <h2 class="page--section-title">Recipes</h2>
+  <h2 class="page--section-title">{{ 'searchDish.title' | translate }}</h2>
   <mat-form-field color="accent" appearance="outline" color="primary" *ngIf="service.recipes$ | filterDish: service.dishNameSearch | async;">
-    <mat-label>Search</mat-label>
+    <mat-label>{{ 'searchDish.searchInputPlaceholder' | translate }}</mat-label>
     <input matInput type="text" [(ngModel)]="service.dishNameSearch">
-    <mat-hint>Recipe name or ingredient</mat-hint>
+    <mat-hint>{{ 'searchDish.searchInputHint' | translate }}</mat-hint>
   </mat-form-field>
 </div>
 

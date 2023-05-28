@@ -6,6 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { FilterDishPipe } from './filter-dish.pipe';
 
@@ -26,6 +27,7 @@ export const imports = [
   MatInputModule,
   MatIconModule,
   MatRippleModule,
+  TranslateModule,
   FilterDishPipe
 ];
 

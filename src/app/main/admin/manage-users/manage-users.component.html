@@ -1,8 +1,8 @@
 <br>
 
-<h2 class="host--section-title">Manage users</h2>
+<h2 class="host--section-title">{{ 'adminPortal.manageUsersTitle' | translate }}</h2>
 
-<p class="host--section-description">View user details and accept requests for access to the admin portal.</p>
+<p class="host--section-description">{{ 'adminPortal.manageUsersDescription' | translate }}</p>
 
 <br>
 
@@ -13,21 +13,21 @@
       <mat-card-content *ngIf="userPermission.user as user">
         <img class="card--image" [src]="user.photoURL" [alt]="user.uid">
         <div class="card--data">
-          <p class="card--data-label">Name</p>
+          <p class="card--data-label">{{ 'adminPortal.nameLabel' | translate }}</p>
           <p>{{ user.displayName }}</p>
-          <p class="card--data-label">Email</p>
+          <p class="card--data-label">{{ 'adminPortal.emailLabel' | translate }}</p>
           <p>{{ user.email }}</p>
           <p class="card--data-label">Firebase Id</p>
           <p>{{ userPermission.uid }}</p>
-          <p class="card--data-label">Creation time</p>
+          <p class="card--data-label">{{ 'adminPortal.creationTimeLabel' | translate }}</p>
           <p>{{ userPermission.creationTime }}</p>
-          <p class="card--data-label">Last sign-in time</p>
+          <p class="card--data-label">{{ 'adminPortal.lastSignInTimeLabel' | translate }}</p>
           <p>{{ userPermission.lastSignInTime }}</p>
-          <p class="card--data-label">Admin portal access</p>
-          <p>{{ userPermission.admin ? 'Has access' : 'Has no access' }}</p>
+          <p class="card--data-label">{{ 'adminPortal.adminPortalAccessLabel' | translate }}</p>
+          <p>{{ (userPermission.admin ? 'adminPortal.hasAccessValueText' : 'adminPortal.hasNoAccessValueText') | translate }}</p>
           <ng-container *ngIf="userPermission.requestTimestamp">
-            <p class="card--data-label">Admin portal access request</p>
-            <button mat-raised-button color="accent" (click)="service.allowAccessToAdminPortal(userPermission.uid)">Allow</button>
+            <p class="card--data-label">{{ 'adminPortal.adminAccessRequestTitle' | translate }}</p>
+            <button mat-raised-button color="accent" (click)="service.allowAccessToAdminPortal(userPermission.uid)">{{ 'adminPortal.allowButtonText' | translate }}</button>
           </ng-container>
         </div>
       </mat-card-content>
