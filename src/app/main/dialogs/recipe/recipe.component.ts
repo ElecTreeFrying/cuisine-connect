@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Inject, OnDestroy, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 
 import { RecipeService } from './recipe.service';
 import { imports, viewProviders } from './recipe.config';
@@ -12,14 +12,20 @@ import { MatTabGroup } from '@angular/material/tabs';
   styleUrls: ['./recipe.component.scss'],
   standalone: true, imports, viewProviders
 })
-export class RecipeComponent implements OnDestroy, AfterViewInit {
+export class RecipeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild(MatTabGroup) matTabGroup!: MatTabGroup;
 
+  comment!: string;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Recipe,
-    private service: RecipeService
+    public service: RecipeService
   ) { }
+
+  ngOnInit(): void {
+    this.service.recipeCommentsObserver();
+  }
 
   ngOnDestroy(): void {
     this.service.updateQueryParams({ cuisine: null, tab: null });
@@ -28,9 +34,9 @@ export class RecipeComponent implements OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.matTabGroup.selectedIndex = this.service.tabIndex;
     this.service.setTabQueryParams(this.service.tabIndex!, this.data);
-    this.matTabGroup.selectedIndexChange.subscribe(
-      (index: number) => this.service.setTabQueryParams(index, this.data)
-    );
+    this.matTabGroup.selectedIndexChange.subscribe((index: number) => {
+      this.service.setTabQueryParams(index, this.data);
+    });
   }
 
 }

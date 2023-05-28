@@ -12,13 +12,12 @@
 .dialog--image-cover {
   position: relative;
   aspect-ratio: 4/3;
-}
-
-img {
-  position: absolute;
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  img {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
 }
 
 .dialog--section-title {
@@ -38,4 +37,47 @@ img {
     font-size: 18px;
   }
 
+  .dialog--section-spinner {
+    display: flex;
+    justify-content: center;
+  }
 }
+
+.dialog--section .comment {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  &.last {
+    margin-bottom: 0;
+  }
+  img {
+    $size: 50px;
+    width: $size;
+    height: $size;
+    border-radius: calc($size/2);
+  }
+  .comment--block {
+    background-color: #e8e8e8;
+    border-radius: 6px;
+    padding: 6px 8px;
+  }
+  .comment--block
+  .comment--block-host {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .comment--block
+  .comment--block-data {
+    margin-bottom: 4px;
+  }
+  p:last-child {
+    font-size: 12px;
+    color: rgba(black, 0.5);
+    margin-bottom: 0;
+  }
+  + .mat-mdc-form-field {
+    margin-top: 16px;
+    width: 100%;
+  }
+}
+

@@ -42,3 +42,11 @@ export interface CuisineCategory {
   date: string;
   details: string;
 }
+
+export interface RecipeComment {
+  user: string;
+  host: Partial<UserInfo>;
+  recipe: string;
+  comment: string;
+  timestamp: number;
+}

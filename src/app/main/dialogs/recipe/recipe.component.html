@@ -56,17 +56,32 @@
 
       <div class="dialog--section">
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
-        
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
-        
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
-        
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
-        
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
-        
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto esse ipsam quisquam voluptas et tempore porro ex saepe ullam eaque similique nisi totam cum, dignissimos cupiditate? Laudantium veniam aliquid obcaecati?</p>
+        <ng-container *ngIf="service.recipeComments$ | async as recipeComments;else pendingRequest">
+          <div class="comment" [ngClass]="{ last: isLast }" *ngFor="let recipeComment of recipeComments | orderByTimestamp;let isLast = last">
+  
+            <div class="comment--user-image">
+              <img [src]="recipeComment.host.photoURL" [alt]="recipeComment.host.email">
+            </div>
+            <div class="comment--block">
+              <p class="comment--block-host">{{ recipeComment.host.displayName }}</p>
+              <p class="comment--block-data">{{ recipeComment.comment }}</p>
+              <p class="comment--block-timestamp">{{ recipeComment.timestamp | localTime }}</p>
+            </div>
+  
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Comment</mat-label>
+            <input matInput type="text" [(ngModel)]="comment" placeholder="Write a comment" (keydown.enter)="service.addComment(comment);comment = ''">
+            <button matSuffix mat-icon-button (click)="service.addComment(comment);comment = ''">
+              <mat-icon>send</mat-icon>
+            </button>
+          </mat-form-field>
+        </ng-container>
+        <ng-template #pendingRequest>
+          <div class="dialog--section-spinner">
+            <mat-spinner></mat-spinner>
+          </div>
+        </ng-template>
 
       </div>
 

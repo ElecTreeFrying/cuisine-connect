@@ -1,31 +1,59 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { BehaviorSubject, Observable, filter, map, switchMap, tap } from 'rxjs';
 
-import { Recipe } from '../../common';
-
-function getTabIndex(tab: string): number {
-  switch (tab) {
-    case 'recipe':   return 0;
-    case 'details':  return 1;
-    case 'comments': return 2;
-    default:         return 0;
-  }
-}
+import { AuthStateService, Recipe, RecipeCommentsService } from '../../common';
+import { RecipeComment } from 'src/app/store';
+import { getTabIndex } from './recipe-functions';
 
 @Injectable()
 export class RecipeService {
 
+  #recipeComments$$ = new BehaviorSubject<RecipeComment[] | null>(null);
+
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authState: AuthStateService,
+    private recipeComments: RecipeCommentsService,
   ) { }
 
   get tabParam(): string {
     return this.route.snapshot.queryParamMap.get('tab') || 'recipe';
   }
 
+  get cuisineParam(): string {
+    return this.route.snapshot.queryParamMap.get('cuisine') || 'invalid';
+  }
+
   get tabIndex(): number {
     return getTabIndex(this.tabParam);
+  }
+
+  get recipeComments$(): Observable<RecipeComment[]> {
+    return this.#recipeComments$$.asObservable().pipe(
+      filter(Boolean)
+    );
+  }
+
+  recipeCommentsObserver(): void {
+    this.recipeCommentsStream$.subscribe((recipeComments: RecipeComment[]) => {
+      this.#recipeComments$$.next(recipeComments);
+    });
+  }
+
+  addComment(comment: string): void {
+    this.recipeComments.addRecipeComment(this.authState.currentUser, {
+      comment, recipe: this.cuisineParam
+    });
+  }
+
+  private get recipeCommentsStream$(): Observable<RecipeComment[]> {
+    return this.route.queryParamMap.pipe(
+      map((paramMap: ParamMap) => paramMap.get('cuisine')),
+      filter(Boolean),
+      switchMap(r => this.recipeComments.getRecipeComments(r))
+    );
   }
 
   setTabQueryParams(index: number, recipe: Recipe): void {
