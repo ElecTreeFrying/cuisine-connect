@@ -1,12 +1,12 @@
 <br>
 
 <div class="page--section-head">
-  <h2 class="page--section-title">Add recipe</h2>
+  <h2 class="page--section-title">{{ update ? 'Update' : 'Add' }} recipe</h2>
 </div>
 
 <br>
 
-<form (ngSubmit)="addRecipe()" [formGroup]="service.form">
+<form (ngSubmit)="update ? updateRecipe() : addRecipe()" [formGroup]="service.form">
   
   <div>
     <mat-form-field color="primary" appearance="outline">
@@ -45,11 +45,9 @@
     </mat-form-field>
 
     <ng-container *ngIf="service.hasCookingSteps;else noCookingStepsEntered">
-      <ol>
-        <li *ngFor="let item of service.cookingSteps$$ | async;let i = index">
-          {{ item }}<mat-icon (click)="service.updateCookingStep(i)">delete</mat-icon>
-        </li>
-      </ol>
+      <ol><li *ngFor="let item of service.cookingSteps$$ | async;let i = index">
+        <p>{{ item }}<mat-icon (click)="service.updateCookingStep(i)">delete</mat-icon></p>
+      </li></ol>
     </ng-container>
     <ng-template #noCookingStepsEntered>
       <ol><li>Add a cooking step</li></ol>
@@ -64,9 +62,9 @@
     </mat-form-field>
 
     <ng-container *ngIf="service.hasIngredients;else noIngredientsEntered">
-      <ol><li *ngFor="let item of service.ingredients$$ | async;let i = index">
-          {{ item }}<mat-icon (click)="service.updateIngredients(i)">delete</mat-icon>
-      </li></ol>
+      <ul><li *ngFor="let item of service.ingredients$$ | async;let i = index">
+        <p>{{ item }}<mat-icon (click)="service.updateIngredients(i)">delete</mat-icon></p>
+      </li></ul>
     </ng-container>
     <ng-template #noIngredientsEntered>
       <ul><li>Add an ingredient</li></ul>
@@ -81,9 +79,9 @@
     </mat-form-field>
 
     <ng-container *ngIf="service.hasNutritionalValue;else noNutritionalValueEntered">
-      <ol><li *ngFor="let item of service.nutritionalValue$$ | async;let i = index">
-          {{ item }}<mat-icon (click)="service.updateNutritionalValue(i)">delete</mat-icon>
-      </li></ol>
+      <ul><li *ngFor="let item of service.nutritionalValue$$ | async;let i = index">
+        <p>{{ item }}<mat-icon (click)="service.updateNutritionalValue(i)">delete</mat-icon></p>
+      </li></ul>
     </ng-container>
     <ng-template #noNutritionalValueEntered>
       <ul><li>Add a nutritional value</li></ul>
@@ -95,8 +93,7 @@
       <mat-hint>Ex. "Approximately 400-500 calories."</mat-hint>
     </mat-form-field>
 
-    <button mat-raised-button type="submit">Add recipe</button>
-
+    <button mat-raised-button type="submit">{{ update ? 'Update' : 'Add' }} recipe</button>
   </div>
 
 </form>

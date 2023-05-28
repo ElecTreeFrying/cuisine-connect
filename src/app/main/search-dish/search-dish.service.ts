@@ -20,8 +20,7 @@ export class SearchDishService {
   ) { }
 
   getRecipes(): void {
-    this.store.selectSnapshot(AppState.recipes)
-    || this.store.dispatch(new AppAction.RecipesControl('get'));
+    this.store.dispatch(new AppAction.RecipesControl('get'));
   }
 
   openRecipe(recipe: Recipe) {

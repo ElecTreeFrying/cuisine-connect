@@ -18,7 +18,7 @@ export const ADMIN_ROUTES: Routes = [
       },
       {
         path: 'manage-recipes',
-        loadComponent: () => import('./manage-recipes/manage-recipes.component').then(m => m.ManageRecipesComponent),
+        loadChildren: () => import('./manage-recipes/manage-recipes.routes').then(m => m.MANAGE_RECIPES_ROUTES),
         title: 'Manage Recipes | Cuisine Connect'
       },
       {

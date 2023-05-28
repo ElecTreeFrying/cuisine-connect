@@ -7,6 +7,7 @@ export interface AppStateModel {
   admin_portal: boolean;
   user: any;
   recipes: Recipe[] | null;
+  selectedRecipe: Recipe | null;
   cuisineCategories: CuisineCategory[] | null;
   userPermissions: UserPermissions[] | null;
 }

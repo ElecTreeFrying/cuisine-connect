@@ -14,8 +14,7 @@ export class HomepageService {
   ) { }
 
   getCuisineCategories(): void {
-    this.store.selectSnapshot(AppState.cuisineCategories)
-    || this.store.dispatch(new AppAction.CuisineCategoryControl('get'));
+    this.store.dispatch(new AppAction.CuisineCategoryControl('get'));
   }
 
 }

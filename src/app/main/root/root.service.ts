@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Auth, signOut } from '@angular/fire/auth';
 import { Select, Store } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, filter, switchMap, take, tap } from 'rxjs';
+import { Observable, filter, switchMap, tap } from 'rxjs';
 
 import { AppAction, AppState, Language } from '../../store';
-import { AuthStateService, FirestoreService, CurrentUser } from '../common';
+import { AuthStateService, FirestoreService, CurrentUser, RecipesService, recipes } from '../common';
 
 @Injectable()
 export class RootService {
@@ -22,6 +22,7 @@ export class RootService {
     private store: Store,
     public authState: AuthStateService,
     private firestore: FirestoreService,
+    private recipesService: RecipesService,
     private translate: TranslateService
   ) { }
 
@@ -33,6 +34,11 @@ export class RootService {
     this.store.select(AppState.language).pipe(filter(Boolean)).subscribe((language: Language) => {
       this.translate.use(language);
     });
+    // recipes.forEach((recipe) => {
+    //   this.recipesService.addRecipe(recipe).then((e) => {
+    //     console.log('@@@ ', e);
+    //   });
+    // })
   }
 
   changeLanguage(language: Language) {

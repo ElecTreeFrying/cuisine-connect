@@ -1,11 +1,16 @@
 import { Injectable, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { BehaviorSubject, Observable, filter } from 'rxjs';
+
+import { AppState, Recipe } from 'src/app/store';
 
 const cookingTime = /^(\d+)\s+(second|seconds|minute|minutes|hour|hours|day|days)$/;
 
 @Injectable()
 export class AddRecipeService {
+
+  @Select(AppState.selectedRecipe) selectedRecipe$!: Observable<Recipe>;
   
   form: FormGroup;
   cookingSteps$$ = new BehaviorSubject<string[]>([]);
@@ -26,17 +31,9 @@ export class AddRecipeService {
     });
   }
 
-  get hasCookingSteps(): boolean  {
-    return this.cookingSteps$$.value.length > 0;
-  }
-
-  get hasIngredients(): boolean  {
-    return this.ingredients$$.value.length > 0;
-  }
-
-  get hasNutritionalValue(): boolean  {
-    return this.nutritionalValue$$.value.length > 0;
-  }
+  get hasCookingSteps(): boolean { return this.cookingSteps$$.value.length > 0; }
+  get hasIngredients(): boolean { return this.ingredients$$.value.length > 0; }
+  get hasNutritionalValue(): boolean { return this.nutritionalValue$$.value.length > 0 }
 
   get formValue(): any {
     const value = { ...this.form.value };
@@ -56,6 +53,22 @@ export class AddRecipeService {
       || !value.nutritionalValue.length
     ) return null;
     return value;
+  }
+
+  initSelectedRecipe(): void {
+    this.selectedRecipe$.pipe(
+      filter(Boolean),
+    ).subscribe((recipe: Recipe) => {
+      this.cookingSteps$$.next(recipe.cookingSteps);
+      this.ingredients$$.next(recipe.ingredients);
+      this.nutritionalValue$$.next(recipe.nutritionalValue);
+      this.form.patchValue({
+        dishName: recipe.dishName,
+        imageUrl: recipe.photo,
+        cookingTime: recipe.cookingTime,
+        calorieContent: recipe.calorieContent,
+      });
+    });
   }
   
   updateCookingStep(index?: number): void {

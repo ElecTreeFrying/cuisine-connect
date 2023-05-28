@@ -1,4 +1,4 @@
-import { CuisineCategory, Recipe } from "./firestore.service"
+import { CuisineCategory, Recipe } from "./firestore"
 
 export const cuisineCategories: CuisineCategory[] = [
   {

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 
-import { AppAction } from 'src/app/store';
+import { AppAction, AppState } from 'src/app/store';
 import { imports, viewProviders } from './add-recipe.config';
 import { AddRecipeService } from './add-recipe.service';
-import { FirestoreService, SnackbarService } from '../common';
+import { RecipesService, SnackbarService } from '../common';
 
 @Component({
   selector: 'app-add-recipe',
@@ -13,17 +13,26 @@ import { FirestoreService, SnackbarService } from '../common';
   styleUrls: ['./add-recipe.component.scss'],
   standalone: true, imports, viewProviders
 })
-export class AddRecipeComponent implements OnInit {
+export class AddRecipeComponent implements OnInit, OnDestroy {
+
+  update!: boolean
 
   constructor(
     public router: Router,
+    public route: ActivatedRoute,
     public store: Store,
     public service: AddRecipeService,
-    private firestore: FirestoreService,
+    private recipesServices: RecipesService,
     private snackbar: SnackbarService
   ) { }
 
   ngOnInit(): void {
+    this.service.initSelectedRecipe();
+    this.update = this.route.snapshot.data['update'];
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new AppAction.SelectedRecipeControl('reset'));
   }
 
   getFormField(value: string): any {
@@ -41,11 +50,30 @@ export class AddRecipeComponent implements OnInit {
     this.snackbar.open({ message: 'Please wait.' , duration: Infinity});
 
     try {
-      await this.firestore.addRecipe(formValue);
+      await this.recipesServices.addRecipe(formValue);
       this.snackbar.dismiss();
       this.service.form.reset();
       this.router.navigateByUrl('/search-dish');
       this.store.dispatch(new AppAction.RecipesControl('reset'));
+    } catch (error) {
+      console.error(error);
+      this.snackbar.open({ message: 'Something went wrong. Please try again.' , duration: 5000});
+    }
+  }
+
+  async updateRecipe(): Promise<void> {
+    const formValue = this.service.formValue;
+    formValue['uid'] = this.store.selectSnapshot(AppState.selectedRecipe)?.uid;
+    if (!formValue) return;
+
+    this.snackbar.open({ message: 'Please wait.' , duration: Infinity});
+
+    try {
+      await this.recipesServices.updateRecipe(formValue);
+      this.snackbar.dismiss();
+      this.service.form.reset();
+      this.router.navigateByUrl('/admin/manage-recipes');
+      this.store.dispatch(new AppAction.SelectedRecipeControl('reset'));
     } catch (error) {
       console.error(error);
       this.snackbar.open({ message: 'Something went wrong. Please try again.' , duration: 5000});

@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext, StateToken, createSelector } fro
 import { map, tap } from 'rxjs';
 
 import { AppStateModel, AppAction, Recipe, CuisineCategory, Language, UserPermissions } from '.';
-import { FirestoreService } from 'src/app/main';
+import { FirestoreService, RecipesService } from 'src/app/main';
 
 export const defaults: AppStateModel = {
   language: 'en',
@@ -14,6 +14,7 @@ export const defaults: AppStateModel = {
   recipes: null,
   cuisineCategories: null,
   userPermissions: null,
+  selectedRecipe: null,
 };
 
 export const APP_STATE_TOKEN = new StateToken<AppStateModel>('app');
@@ -57,6 +58,11 @@ export class AppState {
     return state.recipes.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
+  @Selector()
+  static selectedRecipe(state: AppStateModel): Recipe | null {
+    return state.selectedRecipe;
+  }
+
   static recipe(uid: string): (state: AppStateModel) => Recipe | null {
     return createSelector([AppState], (state: AppStateModel): Recipe | null => {
       return state?.recipes?.find(e => e.uid === uid) || null;
@@ -76,7 +82,8 @@ export class AppState {
   }
 
   constructor(
-    private firestore: FirestoreService
+    private firestore: FirestoreService,
+    private recipesService: RecipesService,
   ) { }
   
   @Action(AppAction.UpdateLanguageState)
@@ -111,13 +118,18 @@ export class AppState {
   @Action(AppAction.RecipesControl)
   recipesControl(ctx: StateContext<AppStateModel>, { control }: AppAction.RecipesControl) {
     if (control === 'get') {
-      return this.firestore.recipes$.pipe(
+      return this.recipesService.recipes$.pipe(
         map(query => query.map(value => ({ ...value.data(), uid: value.id }))),
         tap(recipes => ctx.patchState({ recipes }))
       );
     } else {
       return ctx.patchState({ recipes: null });
     }
+  }
+  
+  @Action(AppAction.SelectedRecipeControl)
+  selectedRecipeControl(ctx: StateContext<AppStateModel>, { control, selectedRecipe }: AppAction.SelectedRecipeControl) {
+    ctx.patchState({ selectedRecipe: control === 'set' ? selectedRecipe : null });
   }
   
   @Action(AppAction.CuisineCategoryControl)

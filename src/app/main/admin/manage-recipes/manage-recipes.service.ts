@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -12,12 +13,18 @@ export class ManageRecipesService {
   dishNameSearch!: string;
 
   constructor(
+    private router: Router,
     private store: Store
   ) { }
 
   getRecipes(): void {
-    this.store.selectSnapshot(AppState.recipes)
-    || this.store.dispatch(new AppAction.RecipesControl('get'));
+    this.store.dispatch(new AppAction.RecipesControl('get'));
+  }
+  
+  updateRecipe(recipe: Recipe): void {
+    this.store.dispatch(new AppAction.SelectedRecipeControl('set', recipe)).subscribe(() => {
+      this.router.navigate([ '/admin/manage-recipes/update-recipe' ]);
+    });
   }
 
 }

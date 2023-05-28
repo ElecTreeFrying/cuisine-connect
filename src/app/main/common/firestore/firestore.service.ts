@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CollectionReference, DocumentReference, QueryDocumentSnapshot, addDoc, collection, collectionSnapshots, getFirestore, query, where, updateDoc, doc, getDocs } from '@angular/fire/firestore';
 import { Observable, filter, map, tap } from 'rxjs';
 
-import { Recipe, CuisineCategory, UserPermissions } from 'src/app/store';
+import { CuisineCategory, UserPermissions } from 'src/app/store';
 import { CurrentUser } from '../auth-state.service';
 
 @Injectable({
@@ -48,18 +48,6 @@ export class FirestoreService {
       filter(e => !!e.length),
       map((permissions: QueryDocumentSnapshot<UserPermissions>[]) => permissions[0].data())
     );
-  }
-
-  private get recipeCollectionRef(): CollectionReference<Recipe> {
-    return collection(getFirestore(), 'recipes') as CollectionReference<Recipe>;
-  }
-
-  addRecipe(data: Recipe): Promise<DocumentReference<Recipe>> {
-    return addDoc<Recipe>(this.recipeCollectionRef, data);
-  }
-
-  get recipes$(): Observable<QueryDocumentSnapshot<Recipe>[]> {
-    return collectionSnapshots<Recipe>(this.recipeCollectionRef);
   }
 
   private get cuisineCategoriesCollectionRef(): CollectionReference<CuisineCategory> {

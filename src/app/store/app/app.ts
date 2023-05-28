@@ -1,6 +1,6 @@
-import { Language } from "./app.model";
+import { Language, Recipe } from "./app.model";
 
-type CollectionControl = 'get' | 'reset';
+type CollectionControl = 'get' | 'set' | 'reset';
 
 export class UpdateLanguageState {
   static readonly type = '[App State] UpdateLanguageState';
@@ -25,6 +25,10 @@ export class UpdateAdminPortalState {
 export class RecipesControl {
   static readonly type = '[App State] RecipesControl';
   constructor(public control: CollectionControl) { }
+}
+export class SelectedRecipeControl {
+  static readonly type = '[App State] SelectedRecipeControl';
+  constructor(public control: CollectionControl, public selectedRecipe?: Recipe) { }
 }
 
 export class CuisineCategoryControl {
