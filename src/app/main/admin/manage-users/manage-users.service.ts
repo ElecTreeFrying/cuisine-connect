@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 import { AppAction, AppState, UserPermissions } from 'src/app/store';
-import { FirestoreService } from '../../common';
+import { UserPermissionsService } from '../../common';
 
 @Injectable()
 export class ManageUsersService {
@@ -12,7 +12,7 @@ export class ManageUsersService {
 
   constructor(
     private store: Store,
-    private firestore: FirestoreService
+    private userPermissionsService: UserPermissionsService
   ) { }
 
   getUserPermissions(): void {
@@ -20,7 +20,7 @@ export class ManageUsersService {
   }
 
   allowAccessToAdminPortal(uid: string): void {
-    this.firestore.updateUserPermissionByUid(uid, {
+    this.userPermissionsService.updateUserPermissionByUid(uid, {
       admin: true,
       requestTimestamp: null
     })

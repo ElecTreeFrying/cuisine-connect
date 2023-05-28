@@ -36,3 +36,5 @@ export class RecipesService {
   }
 
 }
+
+export { Recipe } from 'src/app/store';

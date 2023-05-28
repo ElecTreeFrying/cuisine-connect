@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext, StateToken, createSelector } fro
 import { map, tap } from 'rxjs';
 
 import { AppStateModel, AppAction, Recipe, CuisineCategory, Language, UserPermissions } from '.';
-import { FirestoreService, RecipesService } from 'src/app/main';
+import { CuisineCategoriesService, RecipesService, UserPermissionsService } from 'src/app/main';
 
 export const defaults: AppStateModel = {
   language: 'en',
@@ -82,8 +82,9 @@ export class AppState {
   }
 
   constructor(
-    private firestore: FirestoreService,
     private recipesService: RecipesService,
+    private cuisineCategoriesService: CuisineCategoriesService,
+    private userPermissionsService: UserPermissionsService
   ) { }
   
   @Action(AppAction.UpdateLanguageState)
@@ -135,7 +136,7 @@ export class AppState {
   @Action(AppAction.CuisineCategoryControl)
   cuisineCategoriesControl(ctx: StateContext<AppStateModel>, { control }: AppAction.RecipesControl) {
     if (control === 'get') {
-      return this.firestore.cuisineCategories$.pipe(
+      return this.cuisineCategoriesService.cuisineCategories$.pipe(
         map(query => query.map(value => ({ ...value.data(), uid: value.id }))),
         tap(cuisineCategories => ctx.patchState({ cuisineCategories }))
       );
@@ -147,7 +148,7 @@ export class AppState {
   @Action(AppAction.UserPermissionsControl)
   userPermissionsControl(ctx: StateContext<AppStateModel>, { control }: AppAction.UserPermissionsControl) {
     if (control === 'get') {
-      return this.firestore.userPermission$.pipe(
+      return this.userPermissionsService.userPermission$.pipe(
         map(query => query.map(value => value.data())),
         tap(userPermissions => ctx.patchState({ userPermissions }))
       );

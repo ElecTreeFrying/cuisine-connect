@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, filter, switchMap, tap } from 'rxjs';
 
 import { AppAction, AppState, Language } from '../../store';
-import { AuthStateService, FirestoreService, CurrentUser, RecipesService, recipes } from '../common';
+import { AuthStateService, CurrentUser, RecipesService, UserPermissionsService } from '../common';
 
 @Injectable()
 export class RootService {
@@ -21,7 +21,7 @@ export class RootService {
     private auth: Auth,
     private store: Store,
     public authState: AuthStateService,
-    private firestore: FirestoreService,
+    private userPermissionsService: UserPermissionsService,
     private recipesService: RecipesService,
     private translate: TranslateService
   ) { }
@@ -56,7 +56,7 @@ export class RootService {
   userPermissionObserver(): void {
     this.authState.currentUser$.pipe(
       filter(Boolean),
-      switchMap(currentUser => this.firestore.getUserPermission(currentUser)),
+      switchMap(currentUser => this.userPermissionsService.getUserPermission(currentUser)),
       filter(permission => {
         return this.store.selectSnapshot(AppState.authenticated)
         && (permission.admin !== this.store.selectSnapshot(AppState.admin))
@@ -66,7 +66,7 @@ export class RootService {
   }
 
   updateUserPermission(currentUser: CurrentUser): void {
-    this.firestore.updateUserPermissionByUid(currentUser.uid, {
+    this.userPermissionsService.updateUserPermissionByUid(currentUser.uid, {
       user: currentUser.providerData[0],
       creationTime: currentUser.metadata.creationTime,
       lastSignInTime: currentUser.metadata.lastSignInTime

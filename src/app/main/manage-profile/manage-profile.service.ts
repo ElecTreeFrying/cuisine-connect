@@ -3,7 +3,7 @@ import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 import { AppState } from 'src/app/store';
-import { AuthStateService, FirestoreService, SnackbarService } from '../common';
+import { AuthStateService, SnackbarService, UserPermissionsService } from '../common';
 
 @Injectable()
 export class ManageProfileService {
@@ -14,7 +14,7 @@ export class ManageProfileService {
 
   constructor(
     public authState: AuthStateService,
-    private firestore: FirestoreService,
+    private userPermissionsService: UserPermissionsService,
     private snackbar: SnackbarService
   ) { }
 
@@ -25,7 +25,7 @@ export class ManageProfileService {
   requestAdminAccess(): void {
     this.#requestSent = true;
     this.snackbar.open({ message: 'Request sent!' });
-    this.firestore.updateUserPermissionByUid(this.authState.currentUser.uid, {
+    this.userPermissionsService.updateUserPermissionByUid(this.authState.currentUser.uid, {
       requestTimestamp: Math.floor(new Date().getTime() / 1000)
     });
   }
