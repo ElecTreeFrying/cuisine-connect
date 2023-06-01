@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionSnapshots, getFirestore, CollectionReference, DocumentReference, query, where, serverTimestamp, orderBy } from '@angular/fire/firestore';
-import { Observable, map } from 'rxjs';
+import { addDoc, collection, collectionSnapshots, getFirestore, CollectionReference, DocumentReference, query, where, serverTimestamp, orderBy, doc, deleteDoc } from '@angular/fire/firestore';
+import { Observable, map, tap } from 'rxjs';
 import * as _ from 'lodash';
 
 import { RecipeComment } from 'src/app/store';
 import { CurrentUser } from '../auth-state.service';
 
 interface AddRequest { recipe: string; comment: string; }
-interface GetRequest { user: string; recipe: string; }
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +33,13 @@ export class RecipeCommentsService {
         where('recipe', '==', recipe)
       )
     ).pipe(
-      map(e => e.map(x => x.data()))
+      map(e => e.map(x => ({ ...x.data(), uid: x.id })))
     );
+  }
+
+  async removeComment(uid: string): Promise<void> {
+    const ref = doc(this.recipeCommentsCollectionRef, uid);
+    await deleteDoc(ref);
   }
 
 }

@@ -57,14 +57,22 @@
     border-radius: calc($size/2);
   }
   .comment--block {
+    position: relative;
     background-color: #e8e8e8;
     border-radius: 6px;
     padding: 6px 8px;
+    .mat-icon {
+      position: absolute;
+      top: 0; right: 0;
+      transform: translate(0px, -0px);
+      cursor: pointer;
+    }
   }
   .comment--block
   .comment--block-host {
     font-weight: 500;
     margin-bottom: 4px;
+    padding-right: 24px;
   }
   .comment--block
   .comment--block-data {

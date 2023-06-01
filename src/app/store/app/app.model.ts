@@ -46,6 +46,7 @@ export interface CuisineCategory {
 }
 
 export interface RecipeComment {
+  uid?: string
   user: string;
   host: Partial<UserInfo>;
   recipe: string;

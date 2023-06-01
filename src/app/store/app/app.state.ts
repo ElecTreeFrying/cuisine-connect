@@ -54,6 +54,11 @@ export class AppState {
   }
 
   @Selector()
+  static userId(state: AppStateModel): string {
+    return state.user.uid;
+  }
+
+  @Selector()
   static recipes(state: AppStateModel): Recipe[] | null {
     if (!state.recipes) return null;
     return state.recipes.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

@@ -63,6 +63,9 @@
               <img [src]="recipeComment.host.photoURL" [alt]="recipeComment.host.email">
             </div>
             <div class="comment--block">
+              <ng-container *ngIf="recipeComment.user === (service.userId | async)">
+                <mat-icon matTooltip="Delete" (click)="service.removeComment(recipeComment?.uid!)">close</mat-icon>
+              </ng-container>
               <p class="comment--block-host">{{ recipeComment.host.displayName }}</p>
               <p class="comment--block-data">{{ recipeComment.comment }}</p>
               <p class="comment--block-timestamp">{{ recipeComment.timestamp | localTime }}</p>

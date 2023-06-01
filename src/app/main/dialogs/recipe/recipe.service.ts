@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
 import { BehaviorSubject, Observable, filter, map, switchMap, tap } from 'rxjs';
 
 import { AuthStateService, Recipe, RecipeCommentsService } from '../../common';
-import { RecipeComment } from 'src/app/store';
+import { AppState, RecipeComment } from 'src/app/store';
 import { getTabIndex } from './recipe-functions';
 
 @Injectable()
 export class RecipeService {
+
+  @Select(AppState.userId) userId!: Observable<string>;
 
   #recipeComments$$ = new BehaviorSubject<RecipeComment[] | null>(null);
 
@@ -46,6 +49,11 @@ export class RecipeService {
     this.recipeComments.addRecipeComment(this.authState.currentUser, {
       comment, recipe: this.cuisineParam
     });
+  }
+
+  removeComment(uid: string): void {
+    confirm('Are you sure you want to remove this comment?')
+    && this.recipeComments.removeComment(uid);
   }
 
   private get recipeCommentsStream$(): Observable<RecipeComment[]> {
