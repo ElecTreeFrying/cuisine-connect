@@ -3,6 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
+import { FirebaseDatePipe } from './../../shared';
 
 import { ManageUsersService } from './manage-users.service';
 
@@ -13,7 +14,8 @@ export const imports = [
   MatCardModule,
   MatProgressSpinnerModule,
   MatButtonModule,
-  TranslateModule
+  TranslateModule,
+  FirebaseDatePipe
 ];
 
 export const viewProviders = [

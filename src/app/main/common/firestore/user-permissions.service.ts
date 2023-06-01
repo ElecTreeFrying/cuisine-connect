@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { CollectionReference, DocumentReference, QueryDocumentSnapshot, addDoc, collection, collectionSnapshots, getFirestore, query, where, updateDoc, doc, getDocs } from '@angular/fire/firestore';
+import { Store } from '@ngxs/store';
 import { Observable, filter, map, tap } from 'rxjs';
 
-import { UserPermissions } from 'src/app/store';
+import { AppState, UserPermissions } from 'src/app/store';
 import { CurrentUser } from '../auth-state.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserPermissionsService {
+
+  constructor(
+    private store: Store
+  ) { }
 
   private get userPermissionsCollectionRef(): CollectionReference<UserPermissions> {
     return collection(getFirestore(), 'user-permissions') as CollectionReference<UserPermissions>;
@@ -36,7 +41,8 @@ export class UserPermissionsService {
       query(this.userPermissionsCollectionRef, where('uid', '==', currentUser.uid))
     ).pipe(
       tap((permissions: QueryDocumentSnapshot<UserPermissions>[]) => {
-        if (permissions.length) return;
+        const authenticated = this.store.selectSnapshot(AppState.authenticated);
+        if (permissions.length || !authenticated) return;
         this.addUserPermission({
           admin: false, requestTimestamp: null,
           uid: currentUser.uid,

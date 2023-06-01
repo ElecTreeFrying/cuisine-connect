@@ -16,12 +16,12 @@
   
     <ng-container *ngIf="currentUser?.metadata?.creationTime">
       <p class="host--content-label">{{ 'manageProfile.registrationDateLabel' | translate }}</p>
-      <p class="host--content-data">{{ currentUser?.metadata?.creationTime }}</p>
+      <p class="host--content-data">{{ currentUser?.metadata?.creationTime | firebaseDate }}</p>
     </ng-container>
 
     <ng-container *ngIf="currentUser?.metadata?.lastSignInTime">
       <p class="host--content-label">{{ 'manageProfile.lastSignInLabel' | translate }}</p>
-      <p class="host--content-data">{{ currentUser?.metadata?.lastSignInTime }}</p>
+      <p class="host--content-data">{{ currentUser?.metadata?.lastSignInTime | firebaseDate }}</p>
     </ng-container>
   
     <mat-divider></mat-divider>

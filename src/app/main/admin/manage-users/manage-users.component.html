@@ -20,9 +20,9 @@
           <p class="card--data-label">Firebase Id</p>
           <p>{{ userPermission.uid }}</p>
           <p class="card--data-label">{{ 'adminPortal.creationTimeLabel' | translate }}</p>
-          <p>{{ userPermission.creationTime }}</p>
+          <p>{{ userPermission.creationTime | firebaseDate }}</p>
           <p class="card--data-label">{{ 'adminPortal.lastSignInTimeLabel' | translate }}</p>
-          <p>{{ userPermission.lastSignInTime }}</p>
+          <p>{{ userPermission.lastSignInTime | firebaseDate }}</p>
           <p class="card--data-label">{{ 'adminPortal.adminPortalAccessLabel' | translate }}</p>
           <p>{{ (userPermission.admin ? 'adminPortal.hasAccessValueText' : 'adminPortal.hasNoAccessValueText') | translate }}</p>
           <ng-container *ngIf="userPermission.requestTimestamp">
